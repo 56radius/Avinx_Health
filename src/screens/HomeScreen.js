@@ -22,6 +22,17 @@ export default function HomeScreen({ navigation }) {
       </View>
 
       {/* Logo */}
+      <View style={styles.Image}>
+        <Image
+          style={{
+            position: "absolute",
+            marginTop: -150,
+            alignItems: "center",
+            alignSelf: "center",
+          }}
+          source={require("../.././assets/logo.png")}
+        />
+      </View>
 
       {/* footer for the login and sign up */}
       <View style={styles.footer}>
@@ -30,7 +41,7 @@ export default function HomeScreen({ navigation }) {
             Mental Health
             {"\n"}
           </Text>
-          <Text style={{ marginTop: -26 }}>
+          <Text style={{ marginTop: -30 }}>
             Spreading awareness of the lack of knowledge of mental health in our
             communities
           </Text>
@@ -116,4 +127,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "blue",
   },
+
+  Image: { position: "absolute" },
 });
