@@ -13,6 +13,7 @@ import {
 export default function SignUpScreen({ navigation }) {
   return (
     <View style={styles.container}>
+      <Text> Asap_Liebe </Text>
       <StatusBar style="auto" />
     </View>
   );

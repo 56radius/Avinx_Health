@@ -13,9 +13,12 @@ import {
 export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      {/* Text */}
+      {/* spaning Text */}
       <View style={styles.AvinxText}>
-        <Text style={{ fontSize: 20 }}> Avinx_Health </Text>
+        <Text style={{ fontSize: 20 }}>
+          <Text style={styles.normalText}>Avinx_</Text>
+          <Text style={styles.highlightedText}>Health</Text>
+        </Text>
       </View>
 
       {/* Logo */}
@@ -26,14 +29,56 @@ export default function HomeScreen({ navigation }) {
           <Text style={{ paddingVertical: 10 }}>
             Mental Health
             {"\n"}
-            <Text>
-              Spreading awareness of the lack of knowledge of mental health in
-              our communities
-            </Text>
+          </Text>
+          <Text style={{ marginTop: -15 }}>
+            Spreading awareness of the lack of knowledge of mental health in our
+            communities
           </Text>
         </View>
 
-        {/* Login ad sign up buttons */}
+        {/* Login button */}
+        <View style={styles.Login}>
+          <TouchableOpacity
+            style={{
+              borderWidth: 1,
+              width: "100%",
+              alignItems: "center",
+              paddingVertical: 9,
+              paddingHorizontal: 9,
+              borderRadius: 5,
+              backgroundColor: "green",
+            }}
+            onPress={() => navigation.navigate("Login")}
+          >
+            <Text style={{ color: "#fff", fontWeight: "bold" }}> Login </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Sign Up button */}
+        <View style={styles.Signup}>
+          <TouchableOpacity
+            style={{
+              borderWidth: 2,
+              borderColor: "#fff",
+              borderRadius: 5,
+              paddingVertical: 9,
+              paddingHorizontal: 24,
+              width: "100%",
+              alignItems: "center",
+              backgroundColor: "#fff",
+            }}
+            onPress={() => navigation.navigate("SignUp")}
+          >
+            <Text
+              style={{
+                fontWeight: "bold",
+                color: "blue",
+              }}
+            >
+              Sign Up
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
       {/*
       <ImageBackground
@@ -60,5 +105,18 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
     justifyContent: "center",
+  },
+
+  Login: { flex: 1, justifyContent: "center", alignItems: "center" },
+
+  Signup: { justifyContent: "center", alignItems: "center" },
+
+  normalText: {
+    fontSize: 20,
+    color: "green",
+  },
+  highlightedText: {
+    fontSize: 20,
+    color: "blue", // You can change the color to whatever you like.
   },
 });
