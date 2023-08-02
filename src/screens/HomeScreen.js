@@ -26,11 +26,11 @@ export default function HomeScreen({ navigation }) {
       {/* footer for the login and sign up */}
       <View style={styles.footer}>
         <View>
-          <Text style={{ paddingVertical: 10 }}>
+          <Text style={{ paddingVertical: 5, fontSize: 30, color: "#708090" }}>
             Mental Health
             {"\n"}
           </Text>
-          <Text style={{ marginTop: -15 }}>
+          <Text style={{ marginTop: -26 }}>
             Spreading awareness of the lack of knowledge of mental health in our
             communities
           </Text>
@@ -41,6 +41,7 @@ export default function HomeScreen({ navigation }) {
           <TouchableOpacity
             style={{
               borderWidth: 1,
+              borderColor: "green",
               width: "100%",
               alignItems: "center",
               paddingVertical: 9,
@@ -58,7 +59,6 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.Signup}>
           <TouchableOpacity
             style={{
-              borderWidth: 2,
               borderColor: "#fff",
               borderRadius: 5,
               paddingVertical: 9,
@@ -72,7 +72,7 @@ export default function HomeScreen({ navigation }) {
             <Text
               style={{
                 fontWeight: "bold",
-                color: "blue",
+                color: "green",
               }}
             >
               Sign Up
@@ -80,11 +80,7 @@ export default function HomeScreen({ navigation }) {
           </TouchableOpacity>
         </View>
       </View>
-      {/*
-      <ImageBackground
-        source={require("./assets/background.jpg")}
-        style={styles.imageBackground}
-  ></ImageBackground> */}
+
       <StatusBar style="auto" />
     </View>
   );
@@ -115,8 +111,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "green",
   },
+
   highlightedText: {
     fontSize: 20,
-    color: "blue", // You can change the color to whatever you like.
+    color: "blue",
   },
 });
