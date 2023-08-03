@@ -12,16 +12,20 @@ import {
 
 export default function HomeScreen({ navigation }) {
   return (
-    <View style={styles.container}>
-      {/* spaning Text */}
-      <View style={styles.AvinxText}>
-        <Text style={{ fontSize: 20 }}>
-          <Text style={styles.normalText}>Avinx_</Text>
-          <Text style={styles.highlightedText}>Health</Text>
-        </Text>
-      </View>
+    <ImageBackground
+      style={styles.container}
+      source={require("../.././assets/waters.avif")}
+    >
+      <View style={styles.container}>
+        {/* spaning Text */}
+        <View style={styles.AvinxText}>
+          <Text style={{ fontSize: 20 }}>
+            <Text style={styles.normalText}>Avinx_</Text>
+            <Text style={styles.highlightedText}>Health</Text>
+          </Text>
+        </View>
 
-      {/* Logo */}
+        {/* Logo 
       <View style={styles.Image}>
         <Image
           style={{
@@ -32,68 +36,71 @@ export default function HomeScreen({ navigation }) {
           }}
           source={require("../.././assets/logo.png")}
         />
-      </View>
+      </View> */}
 
-      {/* footer for the login and sign up */}
-      <View style={styles.footer}>
-        <View>
-          <Text style={{ paddingVertical: 5, fontSize: 30, color: "#708090" }}>
-            Mental Health
-            {"\n"}
-          </Text>
-          <Text style={{ marginTop: -30 }}>
-            Spreading awareness of the lack of knowledge of mental health in our
-            communities
-          </Text>
-        </View>
-
-        {/* Login button */}
-        <View style={styles.Login}>
-          <TouchableOpacity
-            style={{
-              borderWidth: 1,
-              borderColor: "green",
-              width: "100%",
-              alignItems: "center",
-              paddingVertical: 9,
-              paddingHorizontal: 9,
-              borderRadius: 5,
-              backgroundColor: "green",
-            }}
-            onPress={() => navigation.navigate("Login")}
-          >
-            <Text style={{ color: "#fff", fontWeight: "bold" }}> Login </Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* Sign Up button */}
-        <View style={styles.Signup}>
-          <TouchableOpacity
-            style={{
-              borderColor: "#fff",
-              borderRadius: 5,
-              paddingVertical: 9,
-              paddingHorizontal: 24,
-              width: "100%",
-              alignItems: "center",
-              backgroundColor: "#fff",
-            }}
-            onPress={() => navigation.navigate("SignUp")}
-          >
+        {/* footer for the login and sign up */}
+        <View style={styles.footer}>
+          <View>
             <Text
-              style={{
-                fontWeight: "bold",
-                color: "green",
-              }}
+              style={{ paddingVertical: 5, fontSize: 30, color: "#708090" }}
             >
-              Sign Up
+              Mental Health
+              {"\n"}
             </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+            <Text style={{ marginTop: -30 }}>
+              Spreading awareness of the lack of knowledge of mental health in
+              our communities
+            </Text>
+          </View>
 
-      <StatusBar style="auto" />
-    </View>
+          {/* Login button */}
+          <View style={styles.Login}>
+            <TouchableOpacity
+              style={{
+                borderWidth: 1,
+                borderColor: "green",
+                width: "100%",
+                alignItems: "center",
+                paddingVertical: 9,
+                paddingHorizontal: 9,
+                borderRadius: 5,
+                backgroundColor: "green",
+              }}
+              onPress={() => navigation.navigate("Login")}
+            >
+              <Text style={{ color: "#fff", fontWeight: "bold" }}> Login </Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* Sign Up button */}
+          <View style={styles.Signup}>
+            <TouchableOpacity
+              style={{
+                borderColor: "#fff",
+                borderRadius: 5,
+                paddingVertical: 9,
+                paddingHorizontal: 24,
+                width: "100%",
+                alignItems: "center",
+                backgroundColor: "#fff",
+              }}
+              onPress={() => navigation.navigate("SignUp")}
+            >
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  color: "green",
+                }}
+              >
+                Sign Up
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <StatusBar style="auto" />
+      </View>
+    </ImageBackground>
   );
 }
 
