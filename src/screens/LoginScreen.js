@@ -2,11 +2,7 @@ import React from "react";
 import { View, Text, Image, Button, StyleSheet } from "react-native";
 
 export default function LoginScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text>Camera wowo bitches</Text>
-    </View>
-  );
+  return <View style={styles.container}></View>;
 }
 
 const styles = StyleSheet.create({
@@ -15,4 +11,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+
+  TopView: {},
 });
