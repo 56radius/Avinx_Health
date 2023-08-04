@@ -44,6 +44,7 @@ export default function App(navigation) {
           name="Login"
           component={LoginScreen}
           options={{
+            headerTransparent: true,
             title: "Login",
           }}
         />

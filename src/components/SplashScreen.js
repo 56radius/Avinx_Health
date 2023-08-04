@@ -8,7 +8,7 @@ const SplashScreen = () => {
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 1500, // Adjust the duration as per your preference
+      duration: 1500,
       useNativeDriver: true,
     }).start();
   }, [fadeAnim]);
@@ -17,7 +17,7 @@ const SplashScreen = () => {
     <View style={styles.container}>
       <Animated.View style={{ opacity: fadeAnim, zIndex: 1 }}>
         <Text style={styles.appName}> AVINX_HEALTH </Text>
-        <Text style={styles.slogan}> Committed to the care ... </Text>
+        <Text style={styles.slogan}> Care, Assistance & Friend </Text>
       </Animated.View>
     </View>
   );
@@ -33,18 +33,26 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: "white", // Set background color to match the background of HomeScreen
-    zIndex: 1, // Set zIndex to ensure the SplashScreen appears on top of other components
+    backgroundColor: "green",
+    zIndex: 1,
   },
+
   appName: {
-    fontSize: 32,
+    fontSize: 25,
     fontWeight: "bold",
-    color: "black", // Adjust the color to make the text visible
+    color: "#fff",
     marginBottom: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
   },
+
   slogan: {
     fontSize: 20,
-    color: "black", // Adjust the color to make the text visible
+    color: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
   },
 });
 
