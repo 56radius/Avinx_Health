@@ -42,6 +42,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
+  form: {
+    padding: 20,
+    width: "70%",
+  },
+
   inputContainer: {
     marginBottom: 15,
     borderColor: "#ccc",
