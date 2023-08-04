@@ -112,7 +112,7 @@ export default function SignUpScreen({ navigation }) {
             <TextInput
               style={styles.input}
               secureTextEntry
-              placeholder="password"
+              placeholder=" Confirm password"
               autoCapitalize="none"
             />
           </View>
@@ -138,9 +138,13 @@ export default function SignUpScreen({ navigation }) {
           <View style={styles.rowContainer}>
             <Text> Already Have an account? </Text>
             <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-              <Text style={styles.signUpButton}> Login </Text>
+              <Text style={{ color: "blue", fontSize: 15, paddingVertical: 5 }}>
+                Login
+              </Text>
             </TouchableOpacity>
           </View>
+
+          {/* Other Sign up options */}
         </View>
         <StatusBar style="auto" />
       </View>
@@ -183,5 +187,12 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 16,
+  },
+
+  rowContainer: {
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 5,
   },
 });
