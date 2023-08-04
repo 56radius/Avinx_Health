@@ -30,6 +30,29 @@ export default function LoginScreen({ navigation }) {
             autoCapitalize="none"
           />
         </View>
+
+        {/* Password */}
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            secureTextEntry
+            placeholder="password"
+            keyboardType="email-address"
+            autoCapitalize="none"
+          />
+        </View>
+
+        {/* Submit */}
+        <View style={styles.Submit}>
+          <TouchableOpacity
+            style={{
+              borderWidth: 2,
+              justifyContent: "center",
+            }}
+          >
+            <Text> Login </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -44,14 +67,18 @@ const styles = StyleSheet.create({
 
   form: {
     padding: 20,
-    width: "70%",
+    width: "85%",
+  },
+
+  Submit: {
+    padding: 10,
   },
 
   inputContainer: {
     marginBottom: 15,
     borderColor: "#ccc",
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 20,
     padding: 10,
   },
   input: {

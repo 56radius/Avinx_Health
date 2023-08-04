@@ -42,7 +42,7 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.footer}>
           <View>
             <Text
-              style={{ paddingVertical: 5, fontSize: 30, color: "#708090" }}
+              style={{ paddingVertical: 5, fontSize: 30, color: "#fff" }}
             >
               Mental Health
               {"\n"}
