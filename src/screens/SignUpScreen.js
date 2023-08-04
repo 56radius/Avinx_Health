@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
     margin: 30,
-    paddingVertical: 20,
+    paddingVertical: 90,
   },
   normalText: {
     fontSize: 30,
