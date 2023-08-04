@@ -15,7 +15,8 @@ export default function LoginScreen({ navigation }) {
     <View style={styles.container}>
       <View style={styles.headerTitle}>
         <Text style={{ color: "green", fontSize: 30, paddingVertical: 18 }}>
-          AVINX_HEALTH
+          <Text style={styles.normalText}>Avinx_</Text>
+          <Text style={styles.highlightedText}>Health</Text>
         </Text>
       </View>
 
@@ -47,10 +48,23 @@ export default function LoginScreen({ navigation }) {
           <TouchableOpacity
             style={{
               borderWidth: 2,
+              borderColor: "green",
               justifyContent: "center",
+              alignItems: "center",
+              paddingVertical: 10,
+              borderRadius: 20,
+              backgroundColor: "green",
             }}
           >
-            <Text> Login </Text>
+            <Text style={{ fontWeight: "bold", color: "#fff" }}> LOGIN </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Forgot Password and Sign Up */}
+        <View style={styles.rowContainer}>
+          <Text>Forgot password?</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+            <Text style={styles.signUpButton}>Sign Up</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -74,6 +88,19 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 
+  rowContainer: {
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 5,
+  },
+
+  signUpButton: {
+    paddingVertical: 2,
+    color: "blue",
+    fontSize: 16,
+  },
+
   inputContainer: {
     marginBottom: 15,
     borderColor: "#ccc",
@@ -83,5 +110,15 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 16,
+  },
+
+  normalText: {
+    fontSize: 30,
+    color: "green",
+  },
+
+  highlightedText: {
+    fontSize: 30,
+    color: "blue",
   },
 });

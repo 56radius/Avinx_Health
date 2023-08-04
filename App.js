@@ -13,14 +13,13 @@ export default function App(navigation) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate some loading time for your app (e.g., fetching data, initializing, etc.)
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Adjust the loading duration as needed
+    }, 2000);
   }, []);
 
   if (isLoading) {
-    return <SplashScreen />; // Show the SplashScreen while loading
+    return <SplashScreen />;
   }
 
   return (
@@ -53,7 +52,7 @@ export default function App(navigation) {
         <Stack.Screen
           name="SignUp"
           component={SignUpScreen}
-          options={{ title: "Sign Up" }}
+          options={{ title: "Sign Up", headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

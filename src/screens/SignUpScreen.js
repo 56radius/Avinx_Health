@@ -12,17 +12,49 @@ import {
 
 export default function SignUpScreen({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Text> Asap_Liebe </Text>
-      <StatusBar style="auto" />
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        {/* Title Name */}
+        <View style={styles.Header}>
+          <Text
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              alignSelf: "center",
+              fontSize: 28,
+            }}
+          >
+            <Text style={styles.normalText}>Avinx_</Text>
+            <Text style={styles.highlightedText}>Health</Text>
+          </Text>
+
+          {/* paragraph */}
+          <View>
+            <Text> Please enter your qualification details </Text>
+          </View>
+        </View>
+
+        {/* Form */}
+        <StatusBar style="auto" />
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    flex: 1,
+    margin: 30,
+  },
+  normalText: {
+    fontSize: 30,
+    color: "green",
+  },
+
+  highlightedText: {
+    fontSize: 30,
+    color: "blue",
   },
 });
