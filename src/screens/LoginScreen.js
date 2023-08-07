@@ -55,6 +55,7 @@ export default function LoginScreen({ navigation }) {
               borderRadius: 20,
               backgroundColor: "green",
             }}
+            onPress={() => navigation.navigate("Dashboard")}
           >
             <Text style={{ fontWeight: "bold", color: "#fff" }}> LOGIN </Text>
           </TouchableOpacity>

@@ -9,6 +9,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
+import HomeScreenButton from "../components/Buttons";
 
 export default function HomeScreen({ navigation }) {
   return (
@@ -57,49 +58,7 @@ export default function HomeScreen({ navigation }) {
             </Text>
           </View>
 
-          {/* Login button */}
-          <View style={styles.Login}>
-            <TouchableOpacity
-              style={{
-                borderWidth: 1,
-                borderColor: "green",
-                width: "100%",
-                alignItems: "center",
-                paddingVertical: 9,
-                paddingHorizontal: 9,
-                borderRadius: 5,
-                backgroundColor: "green",
-              }}
-              onPress={() => navigation.navigate("Login")}
-            >
-              <Text style={{ color: "#fff", fontWeight: "bold" }}> Login </Text>
-            </TouchableOpacity>
-          </View>
-
-          {/* Sign Up button */}
-          <View style={styles.Signup}>
-            <TouchableOpacity
-              style={{
-                borderColor: "#fff",
-                borderRadius: 5,
-                paddingVertical: 9,
-                paddingHorizontal: 24,
-                width: "100%",
-                alignItems: "center",
-                backgroundColor: "#fff",
-              }}
-              onPress={() => navigation.navigate("SignUp")}
-            >
-              <Text
-                style={{
-                  fontWeight: "bold",
-                  color: "green",
-                }}
-              >
-                Sign Up
-              </Text>
-            </TouchableOpacity>
-          </View>
+          <HomeScreenButton />
         </View>
 
         <StatusBar style="auto" />
@@ -124,10 +83,6 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     justifyContent: "center",
   },
-
-  Login: { flex: 1, justifyContent: "center", alignItems: "center" },
-
-  Signup: { justifyContent: "center", alignItems: "center" },
 
   normalText: {
     fontSize: 20,

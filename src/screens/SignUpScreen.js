@@ -137,7 +137,7 @@ export default function SignUpScreen({ navigation }) {
           {/* Forgot Password and Sign Up */}
           <View style={styles.rowContainer}>
             <Text> Already Have an account? </Text>
-            <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
               <Text style={{ color: "blue", fontSize: 15, paddingVertical: 5 }}>
                 Login
               </Text>
