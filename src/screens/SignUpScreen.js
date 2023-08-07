@@ -1,5 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
 import {
   StyleSheet,
   Text,
@@ -10,12 +12,25 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import DateTimePicker from "@react-native-community/datetimepicker";
+// import DateTimePicker from "@react-native-community/datetimepicker";
+import { authConfig } from "../backend/firebase.config";
 
 export default function SignUpScreen({ navigation }) {
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [birthDate, setBirthDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
+
+  const handleSubmit = () => {
+    console.log("Registering ", email, password);
+    createUserWithEmailAndPassword(authConfig, email, password)
+      .then((result) => {
+        console.log("user created", result.user);
+      })
+      .catch((err) => {
+        console.log("Error ", err.message);
+      });
+  };
 
   const handleDateChange = (event, selectedDate) => {
     setShowDatePicker(false);
@@ -74,14 +89,14 @@ export default function SignUpScreen({ navigation }) {
               />
             </TouchableOpacity>
 
-            {showDatePicker && (
+            {/* {showDatePicker && (
               <DateTimePicker
                 value={birthDate}
                 mode="date"
                 display="spinner"
                 onChange={handleDateChange}
               />
-            )}
+            )} */}
           </View>
 
           {/* gender */}
@@ -89,6 +104,7 @@ export default function SignUpScreen({ navigation }) {
           {/* Email */}
           <View style={styles.inputContainer}>
             <TextInput
+              onChangeText={(text) => setEmail(text)}
               style={styles.input}
               placeholder="Email address"
               keyboardType="email-address"
@@ -99,6 +115,7 @@ export default function SignUpScreen({ navigation }) {
           {/* Password */}
           <View style={styles.inputContainer}>
             <TextInput
+              onChangeText={(text) => setPassword(text)}
               style={styles.input}
               secureTextEntry
               placeholder="password"
@@ -120,6 +137,7 @@ export default function SignUpScreen({ navigation }) {
           {/* Submit */}
           <View style={styles.Submit}>
             <TouchableOpacity
+              onPress={handleSubmit}
               style={{
                 borderWidth: 2,
                 borderColor: "green",

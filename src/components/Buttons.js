@@ -1,9 +1,10 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Button, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function HomeScreenButton() {
+export default function HomeScreenButton({ navigation }) {
   return (
-    <View>
+    <SafeAreaView>
       <View style={styles.Login}>
         <TouchableOpacity
           style={{
@@ -45,12 +46,16 @@ export default function HomeScreenButton() {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  Login: { flex: 1, justifyContent: "center", alignItems: "center" },
+  Login: { flex: 0.5, justifyContent: "center", alignItems: "center" },
 
-  Signup: { justifyContent: "center", alignItems: "center", flex: 2.5 },
+  Signup: {
+    justifyContent: "center",
+    alignItems: "center",
+    r,
+  },
 });

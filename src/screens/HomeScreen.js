@@ -9,7 +9,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import HomeScreenButton from "../components/Buttons";
+import HomeScreenButton from "../components/Buttons/";
 
 export default function HomeScreen({ navigation }) {
   return (
@@ -58,7 +58,7 @@ export default function HomeScreen({ navigation }) {
             </Text>
           </View>
 
-          <HomeScreenButton />
+          <HomeScreenButton navigation={navigation} />
         </View>
 
         <StatusBar style="auto" />
