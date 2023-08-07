@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-// import HomeScreen from "./src/screens/HomeScreen";
+import HomeScreen from "./src/screens/HomeScreen";
 import LoginScreen from "./src/screens/LoginScreen";
 import Hello from "./src/screens/Hello";
 import SignUpScreen from "./src/screens/SignUpScreen";
@@ -28,7 +28,7 @@ export default function App(navigation) {
     <NavigationContainer>
       <Stack.Navigator>
         {/* stack Home Screen */}
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Home"
           component={HomeScreen}
           options={{
@@ -38,7 +38,7 @@ export default function App(navigation) {
               fontWeight: "bold",
             },
           }}
-        /> */}
+        />
 
         {/* Login */}
         <Stack.Screen
@@ -46,6 +46,7 @@ export default function App(navigation) {
           component={LoginScreen}
           options={{
             headerTransparent: true,
+            headerShown: false,
             title: "Login",
           }}
         />

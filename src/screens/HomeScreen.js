@@ -1,69 +1,33 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
 import {
-  StyleSheet,
-  Text,
   View,
+  Text,
+  TouchableOpacity,
   Image,
   ImageBackground,
-  ScrollView,
-  TouchableOpacity,
+  StyleSheet,
 } from "react-native";
-import HomeScreenButton from "../components/Buttons/";
+import React from "react";
+
+// Vector Icons
 
 export default function HomeScreen({ navigation }) {
   return (
-    <ImageBackground
-      style={styles.container}
-      source={require("../.././assets/waters.avif")}
-    >
-      <View style={styles.container}>
-        {/* spaning Text */}
-        <View style={styles.AvinxText}>
-          <Text style={{ fontSize: 20 }}>
-            <Text style={styles.normalText}>Avinx_</Text>
-            <Text style={styles.highlightedText}>Health</Text>
-          </Text>
-        </View>
-
-        {/* Logo 
-      <View style={styles.Image}>
-        <Image
+    <View style={styles.container}>
+      {/* Title Name */}
+      <View style={styles.Header}>
+        <Text
           style={{
-            position: "absolute",
-            marginTop: -150,
+            justifyContent: "center",
             alignItems: "center",
             alignSelf: "center",
+            fontSize: 28,
           }}
-          source={require("../.././assets/logo.png")}
-        />
-      </View> */}
-
-        {/* footer for the login and sign up */}
-        <View style={styles.footer}>
-          <View>
-            <Text
-              style={{
-                paddingVertical: 5,
-                fontSize: 30,
-                color: "#708090",
-              }}
-            >
-              Mental Health
-              {"\n"}
-            </Text>
-            <Text style={{ marginTop: -30 }}>
-              Spreading awareness of the lack of knowledge of mental health in
-              our communities
-            </Text>
-          </View>
-
-          <HomeScreenButton navigation={navigation} />
-        </View>
-
-        <StatusBar style="auto" />
+        >
+          <Text style={styles.normalText}>Avinx_</Text>
+          <Text style={styles.highlightedText}>Health</Text>
+        </Text>
       </View>
-    </ImageBackground>
+    </View>
   );
 }
 
@@ -74,25 +38,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  AvinxText: { flex: 0.6, alignSelf: "left", margin: 8, left: 10 },
-
-  footer: { flex: 0.3, margin: 8 },
-
-  imageBackground: {
-    flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center",
-  },
-
   normalText: {
-    fontSize: 20,
+    fontSize: 30,
     color: "green",
+    fontWeight: "bold",
   },
 
   highlightedText: {
-    fontSize: 20,
+    fontSize: 30,
     color: "blue",
+    fontWeight: "bold",
   },
-
-  Image: { position: "absolute" },
 });

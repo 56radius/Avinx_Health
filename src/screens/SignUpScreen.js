@@ -1,6 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
+
+//Firebase authentication
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { authConfig } from "../backend/firebase.config";
 
 import {
   StyleSheet,
@@ -13,7 +16,11 @@ import {
   TextInput,
 } from "react-native";
 // import DateTimePicker from "@react-native-community/datetimepicker";
-import { authConfig } from "../backend/firebase.config";
+
+// Vector iCons
+import { FontAwesome } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function SignUpScreen({ navigation }) {
   const [password, setPassword] = useState("");
@@ -162,7 +169,47 @@ export default function SignUpScreen({ navigation }) {
             </TouchableOpacity>
           </View>
 
+          {/* OR text */}
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: 10,
+            }}
+          >
+            <Text style={{ color: "#708090" }}> OR </Text>
+          </View>
+
           {/* Other Sign up options */}
+          <View style={styles.iconContainer}>
+            {/* Facebook */}
+            <TouchableOpacity
+              onPress={() => console.log("Facebook login pressed")}
+              style={styles.iconButton}
+            >
+              <FontAwesome name="facebook-square" size={30} color="#3b5998" />
+            </TouchableOpacity>
+
+            {/* Gmail */}
+            <TouchableOpacity
+              onPress={() => console.log("Gmail login pressed")}
+              style={styles.iconButton}
+            >
+              <AntDesign name="google" size={30} color="#DB4437" />
+            </TouchableOpacity>
+
+            {/* Microsoft */}
+            <TouchableOpacity
+              onPress={() => console.log("Microsoft login pressed")}
+              style={styles.iconButton}
+            >
+              <MaterialCommunityIcons
+                name="microsoft"
+                size={30}
+                color="#2672EC"
+              />
+            </TouchableOpacity>
+          </View>
         </View>
         <StatusBar style="auto" />
       </View>
@@ -212,5 +259,19 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingVertical: 5,
+  },
+
+  iconContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 10,
+    marginTop: 13,
+  },
+
+  iconButton: {
+    borderRadius: 20,
+    padding: 10,
+    backgroundColor: "#f2f2f2",
   },
 });
