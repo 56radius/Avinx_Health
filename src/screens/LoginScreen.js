@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -9,8 +9,33 @@ import {
   TouchableHighlight,
   TextInput,
 } from "react-native";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { authConfig } from "../backend/firebase.config";
+
+// Vector iCons
+import { FontAwesome } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function LoginScreen({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    signInWithEmailAndPassword(authConfig, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log("Logging user ", user.uid);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("Logging err ", error);
+      });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.headerTitle}>
@@ -25,6 +50,7 @@ export default function LoginScreen({ navigation }) {
         {/* Email input */}
         <View style={styles.inputContainer}>
           <TextInput
+            onChangeText={(text) => setEmail(text)}
             style={styles.input}
             placeholder="Enter your email"
             keyboardType="email-address"
@@ -35,6 +61,7 @@ export default function LoginScreen({ navigation }) {
         {/* Password */}
         <View style={styles.inputContainer}>
           <TextInput
+            onChangeText={(text) => setPassword(text)}
             style={styles.input}
             secureTextEntry
             placeholder="password"
@@ -46,6 +73,7 @@ export default function LoginScreen({ navigation }) {
         {/* Submit */}
         <View style={styles.Submit}>
           <TouchableOpacity
+            onPress={handleLogin}
             style={{
               borderWidth: 2,
               borderColor: "green",
@@ -55,7 +83,6 @@ export default function LoginScreen({ navigation }) {
               borderRadius: 20,
               backgroundColor: "green",
             }}
-            onPress={() => navigation.navigate("Dashboard")}
           >
             <Text style={{ fontWeight: "bold", color: "#fff" }}> LOGIN </Text>
           </TouchableOpacity>
@@ -66,6 +93,42 @@ export default function LoginScreen({ navigation }) {
           <Text>Forgot password?</Text>
           <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
             <Text style={styles.signUpButton}>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* OR text */}
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <Text style={{ color: "#708090" }}> OR </Text>
+        </View>
+
+        {/* Icons to login with */}
+        <View style={styles.iconContainer}>
+          {/* Facebook */}
+          <TouchableOpacity
+            onPress={() => console.log("Facebook login pressed")}
+            style={styles.iconButton}
+          >
+            <FontAwesome name="facebook-square" size={30} color="#3b5998" />
+          </TouchableOpacity>
+
+          {/* Gmail */}
+          <TouchableOpacity
+            onPress={() => console.log("Gmail login pressed")}
+            style={styles.iconButton}
+          >
+            <AntDesign name="google" size={30} color="#DB4437" />
+          </TouchableOpacity>
+
+          {/* Microsoft */}
+          <TouchableOpacity
+            onPress={() => console.log("Microsoft login pressed")}
+            style={styles.iconButton}
+          >
+            <MaterialCommunityIcons
+              name="microsoft"
+              size={30}
+              color="#2672EC"
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -93,7 +156,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: 5,
+    paddingVertical: 20,
   },
 
   signUpButton: {
@@ -121,5 +184,19 @@ const styles = StyleSheet.create({
   highlightedText: {
     fontSize: 30,
     color: "blue",
+  },
+
+  iconContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 10,
+    marginTop: 13,
+  },
+
+  iconButton: {
+    borderRadius: 20,
+    padding: 10,
+    backgroundColor: "#f2f2f2",
   },
 });
