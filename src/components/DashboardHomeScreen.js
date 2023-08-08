@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import * as React from "react";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function DashboardHomeScreen() {
   return (

@@ -21,6 +21,8 @@ import {
   Platform,
 } from "react-native";
 import DashboardHomeScreen from "../components/DashboardHomeScreen";
+import TrackerHomeScreen from "../components/TrackerHomeScreen";
+import ChatHomeScreen from "../components/ChatHomeScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -30,8 +32,8 @@ function HomeScreen({ navigation }) {
 }
 
 /* Search Screen */
-function CalendarScreen() {
-  return <TransactionPin />;
+function TrackerScreen() {
+  return <TrackerHomeScreen />;
 }
 
 /* Card Screen */
@@ -45,11 +47,7 @@ function PlusScreen() {
 
 /* Chat Screen */
 function ChatsScreen() {
-  return (
-    <View>
-      <Text> afiv</Text>
-    </View>
-  );
+  return <ChatHomeScreen />;
 }
 
 /* Profile Screen */
@@ -70,17 +68,17 @@ function Dashboard() {
         options={{
           headerShown: false,
           tabBarIcon: () => (
-            <Ionicons name="ios-home-outline" size={24} color="black" />
+            <Ionicons name="ios-home-outline" size={24} color="green" />
           ),
         }}
       />
       <Tab.Screen
-        name="Calendar"
-        component={CalendarScreen}
+        name="Tracker"
+        component={TrackerScreen}
         options={{
           headerShown: false,
           tabBarIcon: () => (
-            <Fontisto name="arrow-swap" size={24} color="black" />
+            <FontAwesome5 name="sitemap" size={24} color="black" />
           ),
         }}
       />
@@ -91,7 +89,7 @@ function Dashboard() {
         options={{
           tabBarLabel: () => false,
           tabBarIcon: () => (
-            <AntDesign name="plussquare" size={50} color="black" />
+            <AntDesign name="plussquare" size={50} color="green" />
           ),
           tabBarIconStyle: {
             marginTop: -40, // Adjust this value as needed
