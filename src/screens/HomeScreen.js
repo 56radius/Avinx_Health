@@ -37,12 +37,50 @@ export default function HomeScreen({ navigation }) {
         />
 
         {/* Header and paragraph */}
-        <View style={{ paddingVertical: 20 }}>
-          <View style={styles.SecondContainer}>
-            <Text> Your assistance in Health Care </Text>
-            <Text> Take care of your health together with professionals </Text>
+        <View
+          style={{
+            paddingVertical: 20,
+            justifyContent: "center",
+            alignItems: "center",
+            alignSelf: "center",
+          }}
+        >
+          <Text style={{ fontWeight: "bold", fontSize: 30 }}>
+            Your assistant In
+            {"\n"}
+            <Text style={{}}> Mental Health </Text>
+          </Text>
+
+          <View style={styles.paragraph}>
+            <Text style={{ color: "#708090" }}>
+              Take care of your health
+              {"\n"}
+              <Text style={{ color: "#708090" }}>
+                {" "}
+                together with professionals{" "}
+              </Text>
+            </Text>
           </View>
         </View>
+      </View>
+
+      {/* Button */}
+      <View style={{ width: "95%" }}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Login")}
+          style={{
+            borderWidth: 2,
+            borderRadius: 9,
+            borderColor: "green",
+            backgroundColor: "green",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingHorizontal: 10,
+            paddingVertical: 8,
+          }}
+        >
+          <Text style={{ color: "#fff", fontWeight: "bold" }}> Continue </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -73,5 +111,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
+  },
+
+  paragraph: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 10,
   },
 });
