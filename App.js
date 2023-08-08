@@ -6,7 +6,7 @@ import HomeScreen from "./src/screens/HomeScreen";
 import LoginScreen from "./src/screens/LoginScreen";
 import Hello from "./src/screens/Hello";
 import SignUpScreen from "./src/screens/SignUpScreen";
-// import DashboardScreen from "./src/screens/DashboardScreen";
+import DashboardScreen from "./src/screens/DashboardScreen";
 import SplashScreen from "./src/components/SplashScreen";
 
 const Stack = createNativeStackNavigator();
@@ -67,10 +67,11 @@ export default function App(navigation) {
         />
 
         {/* Dashboard */}
-        {/* <Stack.Screen
+        {/*
+        <Stack.Screen
           name="Dashboard"
           component={DashboardScreen}
-          options={{ title: "Dashboard" }}
+          options={{ title: "Dashboard", headerShown: false }}
         /> */}
       </Stack.Navigator>
     </NavigationContainer>

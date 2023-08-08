@@ -54,9 +54,7 @@ export default function HomeScreen({ navigation }) {
 
           {/* Paragraph */}
           <View style={{ paddingVertical: 13 }}>
-            <Text
-              style={{ fontSize: 15, textAlign: "center", color: "#708090" }}
-            >
+            <Text style={{ fontSize: 15, textAlign: "center" }}>
               Take care of you health{"\n"}
               <Text style={{ textAlign: "center" }}>
                 together with professionals

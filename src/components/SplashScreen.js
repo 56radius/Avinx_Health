@@ -1,6 +1,6 @@
 // SplashScreen.js
 import React, { useEffect, useRef } from "react";
-import { View, Text, StyleSheet, Animated } from "react-native";
+import { View, Text, StyleSheet, Animated, Image } from "react-native";
 
 const SplashScreen = () => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
