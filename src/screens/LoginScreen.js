@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { authConfig } from "../backend/firebase.config";
+import DashboardScreen from "./DashboardScreen";
 
 // Vector iCons
 import { FontAwesome } from "@expo/vector-icons";

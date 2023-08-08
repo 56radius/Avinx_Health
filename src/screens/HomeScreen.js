@@ -45,19 +45,21 @@ export default function HomeScreen({ navigation }) {
             alignSelf: "center",
           }}
         >
-          <Text style={{ fontWeight: "bold", fontSize: 30 }}>
-            Your assistant In
-            {"\n"}
-            <Text style={{}}> Mental Health </Text>
+          <Text
+            style={{ fontWeight: "bold", fontSize: 33, textAlign: "center" }}
+          >
+            Your assistant In{"\n"}
+            <Text style={{ textAlign: "center" }}> Mental Health </Text>
           </Text>
 
-          <View style={styles.paragraph}>
-            <Text style={{ color: "#708090" }}>
-              Take care of your health
-              {"\n"}
-              <Text style={{ color: "#708090" }}>
-                {" "}
-                together with professionals{" "}
+          {/* Paragraph */}
+          <View style={{ paddingVertical: 13 }}>
+            <Text
+              style={{ fontSize: 15, textAlign: "center", color: "#708090" }}
+            >
+              Take care of you health{"\n"}
+              <Text style={{ textAlign: "center" }}>
+                together with professionals
               </Text>
             </Text>
           </View>
@@ -111,11 +113,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
-  },
-
-  paragraph: {
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical: 10,
   },
 });
