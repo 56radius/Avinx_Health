@@ -1,8 +1,22 @@
-import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image,
+  TouchableHighlight,
+} from "react-native";
 import * as React from "react";
 import { Ionicons } from "@expo/vector-icons";
+import { getAuth, signOut } from "firebase/auth";
 
-export default function DashboardHomeScreen() {
+export default function DashboardHomeScreen({ navigation }) {
+  const handleSignOut = () => {
+    // Sign out of Firebase Auth
+    const auth = getAuth();
+
+    signOut(auth).then(() => navigation.navigate("Login"));
+  };
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* Header and greetings */}
@@ -37,9 +51,29 @@ export default function DashboardHomeScreen() {
       {/* Card */}
       <View style={styles.cardHeader}>
         <View style={styles.textCardHeader}>
-          <Text> Keep it up! </Text>
-          <Text> You are never alone okay? {"\n"} Always remember that </Text>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 20,
+              paddingVertical: 5,
+              color: "#fff",
+            }}
+          >
+            Keep it up!
+          </Text>
+          <Text style={{ fontSize: 12, color: "#fff" }}>
+            You are never alone okay? {"\n"} Always remember that
+          </Text>
         </View>
+        <View style={{ marginLeft: 190 }}>
+          <Image
+            style={{ width: 10, height: 10 }}
+            source={require("../.././assets/logo.png")}
+          />
+        </View>
+        <TouchableHighlight onPress={handleSignOut}>
+          <Text>SIGN OUT</Text>
+        </TouchableHighlight>
       </View>
     </ScrollView>
   );
@@ -77,11 +111,13 @@ const styles = StyleSheet.create({
 
   cardHeader: {
     justifyContent: "center",
-    alignItems: "center",
     borderWidth: 2,
     width: "89%",
     height: 130,
     marginTop: 40,
     borderRadius: 12,
+    backgroundColor: "blue",
+    borderColor: "blue",
+    padding: 20,
   },
 });

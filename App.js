@@ -8,11 +8,19 @@ import Hello from "./src/screens/Hello";
 import SignUpScreen from "./src/screens/SignUpScreen";
 import DashboardScreen from "./src/screens/DashboardScreen";
 import SplashScreen from "./src/components/SplashScreen";
-
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 const Stack = createNativeStackNavigator();
-
-export default function App(navigation) {
+const auth = getAuth();
+export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [currUser, setCurrUser] = useState();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      // console.log("Loggedin user status ", user);
+      setCurrUser(user);
+    });
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -28,51 +36,57 @@ export default function App(navigation) {
     <NavigationContainer>
       <Stack.Navigator>
         {/* stack Home Screen */}
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            headerShown: false,
-            title: "HOME/LOGIN",
-            headerTitleStyle: {
-              fontWeight: "bold",
-            },
-          }}
-        />
 
-        {/* Login */}
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{
-            headerTransparent: true,
-            headerShown: false,
-            title: "Login",
-          }}
-        />
-        <Stack.Screen
+        {currUser ? (
+          <>
+            <Stack.Screen
+              name="Dashboard"
+              component={DashboardScreen}
+              options={{ title: "Dashboard", headerShown: false }}
+            />
+          </>
+        ) : (
+          <>
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{
+                headerShown: false,
+                title: "HOME/LOGIN",
+                headerTitleStyle: {
+                  fontWeight: "bold",
+                },
+              }}
+            />
+            {/* Sign up */}
+            <Stack.Screen
+              name="SignUp"
+              component={SignUpScreen}
+              options={{ title: "Sign Up", headerShown: false }}
+            />
+
+            {/* Login */}
+            <Stack.Screen
+              name="Login"
+              component={LoginScreen}
+              options={{
+                headerTransparent: true,
+                headerShown: false,
+                title: "Login",
+              }}
+            />
+          </>
+        )}
+        {/* <Stack.Screen
           name="Hello"
           component={Hello}
           options={{
             headerTransparent: true,
             title: "Login",
           }}
-        />
-
-        {/* Sign up */}
-        <Stack.Screen
-          name="SignUp"
-          component={SignUpScreen}
-          options={{ title: "Sign Up", headerShown: false }}
-        />
+        /> */}
 
         {/* Dashboard */}
-        {/*
-        <Stack.Screen
-          name="Dashboard"
-          component={DashboardScreen}
-          options={{ title: "Dashboard", headerShown: false }}
-        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

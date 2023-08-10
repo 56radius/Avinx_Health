@@ -23,17 +23,14 @@ import {
 import DashboardHomeScreen from "../components/DashboardHomeScreen";
 import TrackerHomeScreen from "../components/TrackerHomeScreen";
 import ChatHomeScreen from "../components/ChatHomeScreen";
+import CreateComplainScreen from "./CreateComplain";
+import TrackerScreen from "./TrackerScreen";
 
 const Tab = createBottomTabNavigator();
 
 /* Home Screen */
 function HomeScreen({ navigation }) {
   return <DashboardHomeScreen />;
-}
-
-/* Search Screen */
-function TrackerScreen() {
-  return <TrackerHomeScreen />;
 }
 
 /* Card Screen */
@@ -85,7 +82,7 @@ function Dashboard() {
 
       <Tab.Screen
         name="Plus"
-        component={PlusScreen}
+        component={CreateComplainScreen}
         options={{
           tabBarLabel: () => false,
           tabBarIcon: () => (
