@@ -1,10 +1,10 @@
 import * as React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
-export default function TrackerHomeScreen() {
+export default function ProfileScreen() {
   return (
     <View style={styles.container}>
-      <Text> Time To Track you </Text>
+      <Text> Hello Profile </Text>
     </View>
   );
 }

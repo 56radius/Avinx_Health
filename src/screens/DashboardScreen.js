@@ -21,47 +21,19 @@ import {
   Platform,
 } from "react-native";
 import DashboardHomeScreen from "../components/DashboardHomeScreen";
-import TrackerHomeScreen from "../components/TrackerHomeScreen";
-import ChatHomeScreen from "../components/ChatHomeScreen";
-import CreateComplainScreen from "./CreateComplain";
 import TrackerScreen from "./TrackerScreen";
+import CreateComplainScreen from "./CreateComplain";
+import ChatScreen from "../components/ChatScreen";
+import ProfileScreen from "../components/ProfileScreen";
 
 const Tab = createBottomTabNavigator();
-
-/* Home Screen */
-function HomeScreen({ navigation }) {
-  return <DashboardHomeScreen />;
-}
-
-/* Card Screen */
-function PlusScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Welcome to Card screen</Text>
-    </View>
-  );
-}
-
-/* Chat Screen */
-function ChatsScreen() {
-  return <ChatHomeScreen />;
-}
-
-/* Profile Screen */
-function ProfileScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text> Hello Welcome To Setting screen </Text>
-    </View>
-  );
-}
 
 function Dashboard() {
   return (
     <Tab.Navigator>
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={DashboardHomeScreen}
         options={{
           headerShown: false,
           tabBarIcon: () => (
@@ -96,7 +68,7 @@ function Dashboard() {
 
       <Tab.Screen
         name="Chats"
-        component={ChatsScreen}
+        component={ChatScreen}
         options={{
           headerShown: false,
           tabBarIcon: () => (

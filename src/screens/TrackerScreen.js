@@ -14,7 +14,15 @@ import {
 import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+
+//Fire base auth
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import app from "../backend/firebase.config";
 
 const dbRef = getFirestore(app);
@@ -23,6 +31,10 @@ export default function TrackerScreen({ navigation }) {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const handleDelete = async (docId) => {
+    await deleteDoc(doc(collection(dbRef, "complains"), docId));
+  };
 
   useEffect(() => {
     async function getComplains() {
@@ -77,6 +89,21 @@ export default function TrackerScreen({ navigation }) {
               <Text> {doc.id} </Text>
               <Text> {doc.title} </Text>
               <Text> {doc.message} </Text>
+
+              <TouchableOpacity
+                onPress={() => handleDelete(doc.id)} // Pass the document ID
+                style={{
+                  width: "40%",
+                  paddingVertical: 8,
+                  paddingHorizontal: 10,
+                  borderWidth: 2,
+                  borderRadius: 10,
+                  backgroundColor: "grey",
+                  borderColor: "grey",
+                }}
+              >
+                <Text style={{ color: "#fff" }}> Delete </Text>
+              </TouchableOpacity>
             </View>
           );
         })}
@@ -96,34 +123,6 @@ const styles = StyleSheet.create({
     width: "85%",
   },
 
-  Submit: {
-    padding: 10,
-  },
-
-  rowContainer: {
-    flexDirection: "column",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingVertical: 20,
-  },
-
-  signUpButton: {
-    paddingVertical: 2,
-    color: "blue",
-    fontSize: 16,
-  },
-
-  inputContainer: {
-    marginBottom: 15,
-    borderColor: "#ccc",
-    borderWidth: 1,
-    borderRadius: 20,
-    padding: 10,
-  },
-  input: {
-    fontSize: 16,
-  },
-
   normalText: {
     fontSize: 30,
     color: "green",
@@ -132,19 +131,5 @@ const styles = StyleSheet.create({
   highlightedText: {
     fontSize: 30,
     color: "blue",
-  },
-
-  iconContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 10,
-    marginTop: 13,
-  },
-
-  iconButton: {
-    borderRadius: 20,
-    padding: 10,
-    backgroundColor: "#f2f2f2",
   },
 });
