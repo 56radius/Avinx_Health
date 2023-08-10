@@ -5,6 +5,7 @@ import {
   ScrollView,
   Image,
   TouchableHighlight,
+  TouchableOpacity,
 } from "react-native";
 import * as React from "react";
 import { Ionicons } from "@expo/vector-icons";
@@ -41,7 +42,7 @@ export default function DashboardHomeScreen({ navigation }) {
             paddingVertical: 5,
             backgroundColor: "#D3D3D3",
             borderColor: "#D3D3D3",
-            borderRadius: 2,
+            borderRadius: 8,
           }}
         >
           <Ionicons name="ios-notifications-outline" size={24} color="black" />
@@ -65,15 +66,20 @@ export default function DashboardHomeScreen({ navigation }) {
             You are never alone okay? {"\n"} Always remember that
           </Text>
         </View>
-        <View style={{ marginLeft: 190 }}>
+        <View style={{ position: "absolute", marginLeft: 210 }}>
           <Image
-            style={{ width: 10, height: 10 }}
+            style={{ width: 130, height: 110 }}
             source={require("../.././assets/logo.png")}
           />
         </View>
         <TouchableHighlight onPress={handleSignOut}>
           <Text>SIGN OUT</Text>
         </TouchableHighlight>
+      </View>
+
+      {/* line up cards */}
+      <View style={styles.lineCards}>
+        <Text> fsldjfdlfdf </Text>
       </View>
     </ScrollView>
   );
@@ -119,5 +125,11 @@ const styles = StyleSheet.create({
     backgroundColor: "blue",
     borderColor: "blue",
     padding: 20,
+  },
+
+  lineCards: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 30,
   },
 });
