@@ -78,8 +78,17 @@ export default function DashboardHomeScreen({ navigation }) {
       </View>
 
       {/* line up cards */}
-      <View style={styles.lineCards}>
-        <Text> fsldjfdlfdf </Text>
+      <View style={styles.lineCardheader}>
+        <View style={styles.lineCardInfo}>
+          <Text style={styles.lineCardText}> A Better You </Text>
+        </View>
+
+        {/* see all */}
+        <View sty>
+          <TouchableOpacity>
+            <Text style={{ color: "blue" }}> See all </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   );
@@ -93,12 +102,13 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
   },
 
+  // Header
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
-    paddingHorizontal: 20,
+    paddingHorizontal: 17,
   },
 
   userInfo: {
@@ -115,6 +125,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
+  // Card begining styling
   cardHeader: {
     justifyContent: "center",
     borderWidth: 2,
@@ -127,9 +138,23 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 
-  lineCards: {
-    justifyContent: "center",
+  // Card headers
+  lineCardheader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: 30,
+    width: "100%",
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+  },
+
+  lineCardInfo: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  lineCardText: {
+    marginLeft: 10,
+    fontSize: 19,
   },
 });
