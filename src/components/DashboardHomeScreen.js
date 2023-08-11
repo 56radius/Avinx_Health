@@ -17,7 +17,7 @@ import {
   ContributionGraph,
   StackedBarChart,
 } from "react-native-chart-kit";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, Entypo } from "@expo/vector-icons";
 import { getAuth, signOut } from "firebase/auth";
 
 export default function DashboardHomeScreen({ navigation }) {
@@ -136,8 +136,66 @@ export default function DashboardHomeScreen({ navigation }) {
           />
         </View>
 
-        {/* Your Routine */}
-        <View style={styles.routine}></View>
+        {/* Your Routine, Text */}
+        <View
+          style={{
+            alignSelf: "flex-start",
+            paddingHorizontal: 26, // Adjust this value to your preference
+            paddingVertical: 10,
+          }}
+        >
+          <Text style={{}}>
+            <Text style={{ color: "blue", fontSize: 19 }}> Your </Text>
+            <Text style={{ color: "green", fontSize: 19 }}> Routine </Text>
+          </Text>
+        </View>
+
+        {/* Routine Cards  components*/}
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            borderWidth: 2,
+            width: "89%",
+            height: 100,
+            marginTop: 8,
+            borderRadius: 12,
+            backgroundColor: "#E0E0E0",
+            borderColor: "#E0E0E0",
+            padding: 20,
+          }}
+        >
+          {/* View element of image */}
+          <View style={{ position: "absolute" }}>
+            <Image
+              style={{ width: 100, height: 78 }}
+              source={require("../.././assets/water.png")}
+            />
+          </View>
+
+          {/* Text style */}
+          <View style={{ flex: 1, paddingHorizontal: 65, marginTop: 4 }}>
+            <Text style={{ fontWeight: "bold" }}>
+              Starting my day off right
+            </Text>
+
+            {/* Alarm design */}
+            <View style={{ flex: 1, marginTop: 8, paddingHorizontal: 4 }}>
+              <Ionicons name="alarm" size={18} color="green" />
+              <View style={{ flex: 1, paddingHorizontal: 24, marginTop: -16 }}>
+                <Text style={{ fontSize: 12 }}>12 min</Text>
+              </View>
+            </View>
+          </View>
+
+          {/* Right arrow */}
+          <View>
+            <TouchableOpacity>
+              <Entypo name="chevron-small-right" size={24} color="black" />
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </ScrollView>
   );
