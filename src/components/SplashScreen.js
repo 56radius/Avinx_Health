@@ -16,8 +16,10 @@ const SplashScreen = () => {
   return (
     <View style={styles.container}>
       <Animated.View style={{ opacity: fadeAnim, zIndex: 1 }}>
-        <Text style={styles.appName}> AVINX_HEALTH </Text>
-        <Text style={styles.slogan}> Care, Assistance & Friend </Text>
+        {/*}  <Text style={styles.appName}> AVINX_HEALTH </Text>
+        <Text style={styles.slogan}> Care, Assistance & Friend </Text> */}
+
+        <Image source={require("../.././assets/logo.png")} />
       </Animated.View>
     </View>
   );

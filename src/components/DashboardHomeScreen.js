@@ -6,6 +6,7 @@ import {
   Image,
   TouchableHighlight,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import * as React from "react";
 import { Ionicons } from "@expo/vector-icons";
@@ -18,6 +19,20 @@ export default function DashboardHomeScreen({ navigation }) {
 
     signOut(auth).then(() => navigation.navigate("Login"));
   };
+
+  // Sample card data
+  const cardData = [
+    { id: "1", title: "Hello", content: "Content for Card 1" },
+    { id: "2", title: "Card 2", content: "Content for Card 2" },
+    { id: "3", title: "Card 3", content: "Content for Card 3" },
+  ];
+
+  const renderItem = ({ item }) => (
+    <View style={styles.card}>
+      <Text style={styles.cardTitle}>{item.title}</Text>
+      <Text>{item.content}</Text>
+    </View>
+  );
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* Header and greetings */}
@@ -84,11 +99,23 @@ export default function DashboardHomeScreen({ navigation }) {
         </View>
 
         {/* see all */}
-        <View sty>
+        <View>
           <TouchableOpacity>
-            <Text style={{ color: "blue" }}> See all </Text>
+            <Text style={{ color: "green" }}> See all </Text>
           </TouchableOpacity>
         </View>
+      </View>
+
+      {/* Slideshow of Cards */}
+      <View style={styles.slideshow}>
+        <FlatList
+          data={cardData}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+        />
       </View>
     </ScrollView>
   );
@@ -131,7 +158,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     width: "89%",
     height: 130,
-    marginTop: 40,
+    marginTop: 20,
     borderRadius: 12,
     backgroundColor: "blue",
     borderColor: "blue",
@@ -145,7 +172,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     paddingHorizontal: 15,
-    paddingVertical: 10,
+    paddingVertical: 20,
   },
 
   lineCardInfo: {
@@ -155,6 +182,30 @@ const styles = StyleSheet.create({
 
   lineCardText: {
     marginLeft: 10,
-    fontSize: 19,
+    fontSize: 16,
+  },
+
+  slideshow: {
+    width: "100%",
+    height: 150,
+    marginTop: 0,
+    paddingHorizontal: 20,
+  },
+
+  card: {
+    width: 150,
+    height: "90%",
+    padding: 10,
+    marginHorizontal: 5,
+    borderRadius: 8,
+    backgroundColor: "#E0E0E0",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  cardTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 5,
   },
 });
