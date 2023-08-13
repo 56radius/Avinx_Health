@@ -17,7 +17,7 @@ import {
   ContributionGraph,
   StackedBarChart,
 } from "react-native-chart-kit";
-import { Ionicons, Entypo } from "@expo/vector-icons";
+import { Ionicons, Entypo, MaterialIcons, AntDesign } from "@expo/vector-icons";
 import { getAuth, signOut } from "firebase/auth";
 
 export default function DashboardHomeScreen({ navigation }) {
@@ -96,7 +96,8 @@ export default function DashboardHomeScreen({ navigation }) {
               Keep it up!
             </Text>
             <Text style={{ fontSize: 12, color: "#fff" }}>
-              You are never alone okay? {"\n"} Always remember that
+              AVA is always here to help you {"\n"}
+              <Text> Always remember that </Text>
             </Text>
           </View>
           <View style={{ position: "absolute", marginLeft: 210 }}>
@@ -192,10 +193,49 @@ export default function DashboardHomeScreen({ navigation }) {
           {/* Right arrow */}
           <View>
             <TouchableOpacity>
-              <Entypo name="chevron-small-right" size={24} color="black" />
+              <Entypo name="chevron-small-right" size={24} color="blue" />
             </TouchableOpacity>
           </View>
         </View>
+
+        {/* Second Routine Card components */}
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            borderWidth: 2,
+            width: "89%",
+            height: 72,
+            marginTop: 8,
+            borderRadius: 12,
+            backgroundColor: "#E0E0E0",
+            borderColor: "#E0E0E0",
+            padding: 20,
+          }}
+        >
+          {/* View element of image */}
+          <View style={{ position: "absolute" }}>
+            <Image
+              style={{ width: 55, height: 70, marginLeft: 20 }}
+              source={require("../.././assets/checkin.png")}
+            />
+          </View>
+
+          {/* Text style */}
+          <View style={{ flex: 1, paddingHorizontal: 65 }}>
+            <Text style={{ fontWeight: "bold" }}> Today's self check in </Text>
+          </View>
+
+          {/* Right arrow */}
+          <View style={{ alignItems: "flex-end" }}>
+            <TouchableOpacity>
+              <Entypo name="chevron-small-right" size={24} color="blue" />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Monitoring charts for sleep and mood */}
       </View>
     </ScrollView>
   );

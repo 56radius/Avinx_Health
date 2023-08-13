@@ -23,7 +23,7 @@ import {
 import DashboardHomeScreen from "../components/DashboardHomeScreen";
 import TrackerScreen from "./TrackerScreen";
 import CreateComplainScreen from "./CreateComplain";
-import ChatScreen from "../components/ChatScreen";
+import ToolsScreen from "../components/ToolsScreen";
 import ProfileScreen from "../components/ProfileScreen";
 
 const Tab = createBottomTabNavigator();
@@ -67,13 +67,11 @@ function Dashboard() {
       />
 
       <Tab.Screen
-        name="Chats"
-        component={ChatScreen}
+        name="Tools"
+        component={ToolsScreen}
         options={{
           headerShown: false,
-          tabBarIcon: () => (
-            <Ionicons name="chatbox-ellipses-outline" size={24} color="black" />
-          ),
+          tabBarIcon: () => <AntDesign name="inbox" size={24} color="black" />,
         }}
       />
       <Tab.Screen
