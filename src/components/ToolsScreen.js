@@ -1,5 +1,6 @@
 import * as React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { Entypo } from "@expo/vector-icons";
 
 export default function ChatHomeScreen() {
   return (
@@ -7,21 +8,48 @@ export default function ChatHomeScreen() {
       <View style={styles.container}>
         {/* header */}
         <View style={styles.header}>
-          <Text style={{ fontWeight: "bold", fontSize: 23 }}> Tools </Text>
+          <Text style={{ fontWeight: "bold", fontSize: 28 }}> Tools </Text>
         </View>
 
         {/* Cards */}
         {/* Top Row of Cards */}
         <View style={styles.cardRow}>
           {/* First Card */}
-          <View style={styles.card}>
+          <View
+            style={{
+              width: "48%",
+              height: 150,
+              backgroundColor: "blue",
+              borderRadius: 24,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             {/* Add content for the first card */}
-            <Text style={styles.cardTitle}>Card 1</Text>
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: "bold",
+                marginBottom: 10,
+                color: "#fff",
+              }}
+            >
+              Mood Journal
+            </Text>
             {/* Add any other components or text for the card */}
           </View>
 
           {/* Second Card */}
-          <View style={styles.card}>
+          <View
+            style={{
+              width: "48%",
+              height: 150,
+              backgroundColor: "#E0E0E0",
+              borderRadius: 24,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             {/* Add content for the second card */}
             <Text style={styles.cardTitle}>Card 2</Text>
             {/* Add any other components or text for the card */}
@@ -38,9 +66,30 @@ export default function ChatHomeScreen() {
           </View>
 
           {/* Fourth Card */}
-          <View style={styles.card}>
+          <View
+            style={{
+              width: "48%",
+              height: 150,
+              backgroundColor: "green",
+              borderRadius: 25,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <View style={{ alignSelf: "flex-start", paddingHorizontal: 10 }}>
+              <Entypo name="mic" size={24} color="#fff" />
+            </View>
             {/* Add content for the fourth card */}
-            <Text style={styles.cardTitle}>Card 4</Text>
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: "bold",
+                marginBottom: 10,
+                color: "#fff",
+              }}
+            >
+              Talk to AVA
+            </Text>
             {/* Add any other components or text for the card */}
           </View>
         </View>
@@ -59,7 +108,7 @@ const styles = StyleSheet.create({
 
   header: {
     alignSelf: "flex-start",
-    paddingHorizontal: 24,
+    paddingHorizontal: 1,
     marginTop: 70,
   },
 
@@ -72,9 +121,9 @@ const styles = StyleSheet.create({
 
   card: {
     width: "48%",
-    height: 120,
+    height: 150,
     backgroundColor: "#E0E0E0",
-    borderRadius: 12,
+    borderRadius: 24,
     justifyContent: "center",
     alignItems: "center",
   },
