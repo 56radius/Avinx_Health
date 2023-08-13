@@ -6,10 +6,12 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { Entypo } from "@expo/vector-icons";
+import { Entypo, Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import ChatScreen from ".././screens/ChatScreen";
 
-export default function ToolsScreen({ navigation }) {
+export default function ToolsScreen() {
+  const navigation = useNavigation();
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -26,17 +28,35 @@ export default function ToolsScreen({ navigation }) {
               width: "48%",
               height: 150,
               backgroundColor: "blue",
-              borderRadius: 24,
+              borderRadius: 25,
               justifyContent: "center",
               alignItems: "center",
             }}
           >
+            <View style={{ alignSelf: "flex-start", paddingHorizontal: 18 }}>
+              {/* Icons */}
+              <TouchableOpacity
+                onPress={() => navigation.navigate("ChatScreen")}
+                style={{
+                  borderWidth: 2,
+                  paddingVertical: 8,
+                  paddingHorizontal: 5,
+                  borderRadius: 19,
+                  backgroundColor: "#E0E0E0",
+                  borderColor: "#E0E0E0",
+                }}
+              >
+                <Feather name="book-open" size={24} color="green" />
+              </TouchableOpacity>
+            </View>
             {/* Add content for the first card */}
             <Text
               style={{
                 fontSize: 18,
                 fontWeight: "bold",
                 marginBottom: 10,
+                paddingVertical: 15,
+                left: -8,
                 color: "#fff",
               }}
             >

@@ -78,6 +78,7 @@ function Dashboard() {
         name="Profile"
         component={ProfileScreen}
         options={{
+          headerShown: false,
           tabBarIcon: () => <AntDesign name="user" size={24} color="black" />,
         }}
       />

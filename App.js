@@ -55,7 +55,7 @@ export default function App() {
             <Stack.Screen
               name="ChatScreen"
               component={ChatScreen}
-              options={{ title: "Chat Screen" }}
+              options={{ title: "AVA" }}
             />
           </>
         ) : (
