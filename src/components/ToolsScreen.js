@@ -1,8 +1,15 @@
 import * as React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import { Entypo } from "@expo/vector-icons";
+import ChatScreen from ".././screens/ChatScreen";
 
-export default function ChatHomeScreen() {
+export default function ToolsScreen({ navigation }) {
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -11,7 +18,6 @@ export default function ChatHomeScreen() {
           <Text style={{ fontWeight: "bold", fontSize: 28 }}> Tools </Text>
         </View>
 
-        {/* Cards */}
         {/* Top Row of Cards */}
         <View style={styles.cardRow}>
           {/* First Card */}
@@ -51,7 +57,7 @@ export default function ChatHomeScreen() {
             }}
           >
             {/* Add content for the second card */}
-            <Text style={styles.cardTitle}>Card 2</Text>
+            <Text style={styles.cardTitle}> Self Diagnoser </Text>
             {/* Add any other components or text for the card */}
           </View>
         </View>
@@ -61,7 +67,7 @@ export default function ChatHomeScreen() {
           {/* Third Card */}
           <View style={styles.card}>
             {/* Add content for the third card */}
-            <Text style={styles.cardTitle}>Card 3</Text>
+            <Text style={styles.cardTitle}> Mindful Minutes </Text>
             {/* Add any other components or text for the card */}
           </View>
 
@@ -76,8 +82,21 @@ export default function ChatHomeScreen() {
               alignItems: "center",
             }}
           >
-            <View style={{ alignSelf: "flex-start", paddingHorizontal: 10 }}>
-              <Entypo name="mic" size={24} color="#fff" />
+            <View style={{ alignSelf: "flex-start", paddingHorizontal: 18 }}>
+              {/* Icons */}
+              <TouchableOpacity
+                onPress={() => navigation.navigate("ChatScreen")}
+                style={{
+                  borderWidth: 2,
+                  paddingVertical: 8,
+                  paddingHorizontal: 5,
+                  borderRadius: 19,
+                  backgroundColor: "#E0E0E0",
+                  borderColor: "#E0E0E0",
+                }}
+              >
+                <Entypo name="mic" size={24} color="blue" />
+              </TouchableOpacity>
             </View>
             {/* Add content for the fourth card */}
             <Text
@@ -85,6 +104,8 @@ export default function ChatHomeScreen() {
                 fontSize: 18,
                 fontWeight: "bold",
                 marginBottom: 10,
+                paddingVertical: 15,
+                left: -18,
                 color: "#fff",
               }}
             >

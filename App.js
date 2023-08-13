@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Button, View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+//importing necessary screens and components
 import HomeScreen from "./src/screens/HomeScreen";
 import LoginScreen from "./src/screens/LoginScreen";
 import Hello from "./src/screens/Hello";
 import SignUpScreen from "./src/screens/SignUpScreen";
 import DashboardScreen from "./src/screens/DashboardScreen";
 import SplashScreen from "./src/components/SplashScreen";
+import ChatScreen from "./src/screens/ChatScreen";
+
+//firebase authentication
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 const Stack = createNativeStackNavigator();
 const auth = getAuth();
@@ -39,10 +44,18 @@ export default function App() {
 
         {currUser ? (
           <>
+            {/* Dashboard */}
             <Stack.Screen
               name="Dashboard"
               component={DashboardScreen}
               options={{ title: "Dashboard", headerShown: false }}
+            />
+
+            {/* Chat Screen */}
+            <Stack.Screen
+              name="ChatScreen"
+              component={ChatScreen}
+              options={{ title: "Chat Screen" }}
             />
           </>
         ) : (
