@@ -1,12 +1,19 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* profile picture */}
-      <View>
-        <Text> dcjvdl </Text>
+      {/* profile picture and name */}
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <Image
+          style={{ width: 80, height: 80, borderRadius: 50 }}
+          source={require("../.././assets/clover.jpg")}
+        />
+
+        <Text style={{ fontWeight: "bold", paddingVertical: 10 }}>
+          Merit Mohammed
+        </Text>
       </View>
     </View>
   );

@@ -11,11 +11,14 @@ import SignUpScreen from "./src/screens/SignUpScreen";
 import DashboardScreen from "./src/screens/DashboardScreen";
 import SplashScreen from "./src/components/SplashScreen";
 import ChatScreen from "./src/screens/ChatScreen";
+import ForgotPasswordScreen from "./src/screens/ForgotPasswordScreen";
 
 //firebase authentication
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 const Stack = createNativeStackNavigator();
 const auth = getAuth();
+
+//function app
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [currUser, setCurrUser] = useState();
@@ -71,12 +74,6 @@ export default function App() {
                 },
               }}
             />
-            {/* Sign up */}
-            <Stack.Screen
-              name="SignUp"
-              component={SignUpScreen}
-              options={{ title: "Sign Up", headerShown: false }}
-            />
 
             {/* Login */}
             <Stack.Screen
@@ -87,6 +84,23 @@ export default function App() {
                 headerShown: false,
                 title: "Login",
               }}
+            />
+
+            {/* ForgotPassword */}
+            <Stack.Screen
+              name="ForgotPassword"
+              component={ForgotPasswordScreen}
+              options={{
+                headerTransparent: true,
+                title: "Forgot Password",
+              }}
+            />
+
+            {/* Sign up */}
+            <Stack.Screen
+              name="SignUp"
+              component={SignUpScreen}
+              options={{ title: "Sign Up", headerShown: false }}
             />
           </>
         )}

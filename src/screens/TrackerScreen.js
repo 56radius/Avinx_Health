@@ -45,7 +45,7 @@ export default function TrackerScreen({ navigation }) {
         querySnapshot.forEach((doc) => {
           const data = doc.data();
           const result = {
-            id: doc.id,
+            title: doc.title,
             ...data,
           };
           complains.push(result);
