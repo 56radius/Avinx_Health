@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, AntDesign } from "@expo/vector-icons";
 
 export default function App() {
   return (
@@ -17,14 +17,18 @@ export default function App() {
         </Text>
       </View>
 
-      <View>
+      {/* List */}
+      <View style={{ paddingVertical: 25 }}>
+        {/* Edit Profile */}
         <TouchableOpacity style={styles.profileItem}>
           <View style={styles.profileItemLeft}>
-            <Ionicons name="mail-outline" size={24} color="black" />
-            <Text style={styles.profileTitle}>Inbox</Text>
+            <AntDesign name="edit" size={24} color="black" />
+            <Text style={styles.profileTitle}> Profile </Text>
           </View>
           <Text style={styles.profileArrow}>→</Text>
         </TouchableOpacity>
+
+        {/* */}
         <TouchableOpacity style={styles.profileItem}>
           <View style={styles.profileItemLeft}>
             <Ionicons name="people-outline" size={24} color="black" />
@@ -35,16 +39,38 @@ export default function App() {
         <TouchableOpacity style={styles.profileItem}>
           <View style={styles.profileItemLeft}>
             <Ionicons name="search-outline" size={24} color="black" />
-            <Text style={styles.profileTitle}>Search</Text>
+            <Text style={styles.profileTitle}> Search </Text>
           </View>
           <Text style={styles.profileArrow}>→</Text>
         </TouchableOpacity>
+
+        {/* Help and support */}
         <TouchableOpacity style={styles.profileItem}>
           <View style={styles.profileItemLeft}>
-            <Ionicons name="notifications-outline" size={24} color="black" />
-            <Text style={styles.profileTitle}>Updates</Text>
+            <Ionicons name="ios-help-circle" size={24} color="black" />
+            <Text style={styles.profileTitle}> Support </Text>
           </View>
           <Text style={styles.profileArrow}>→</Text>
+        </TouchableOpacity>
+
+        {/* Settings */}
+        <TouchableOpacity style={styles.profileItem}>
+          <View style={styles.profileItemLeft}>
+            <AntDesign name="setting" size={24} color="black" />
+            <Text style={styles.profileTitle}> Settings </Text>
+          </View>
+          <Text style={styles.profileArrow}>→</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Log out button */}
+      <View style={{ width: "60%" }}>
+        <TouchableOpacity
+          style={{
+            borderWidth: 2,
+          }}
+        >
+          <Text> Log Out </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -53,9 +79,9 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 60,
   },
 
   profileItem: {
@@ -78,5 +104,6 @@ const styles = StyleSheet.create({
   },
   profileArrow: {
     fontSize: 24,
+    marginLeft: 190,
   },
 });

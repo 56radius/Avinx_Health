@@ -61,7 +61,8 @@ function Dashboard() {
             <AntDesign name="plussquare" size={50} color="green" />
           ),
           tabBarIconStyle: {
-            marginTop: -40, // Adjust this value as needed
+            marginTop: -40,
+            borderRadius: 10, // Adjust this value as needed
           },
         }}
       />
