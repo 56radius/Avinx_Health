@@ -62,7 +62,7 @@ function Dashboard() {
           ),
           tabBarIconStyle: {
             marginTop: -40,
-            borderRadius: 10, // Adjust this value as needed
+            // Adjust this value as needed
           },
         }}
       />

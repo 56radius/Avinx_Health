@@ -18,16 +18,8 @@ import {
   StackedBarChart,
 } from "react-native-chart-kit";
 import { Ionicons, Entypo, MaterialIcons, AntDesign } from "@expo/vector-icons";
-import { getAuth, signOut } from "firebase/auth";
 
 export default function DashboardHomeScreen({ navigation }) {
-  const handleSignOut = () => {
-    // Sign out of Firebase Auth
-    const auth = getAuth();
-
-    signOut(auth).then(() => navigation.navigate("Login"));
-  };
-
   // Sample card data
   const cardData = [
     { id: "1", title: "Feedback", content: "Content for Card 1" },
@@ -106,9 +98,6 @@ export default function DashboardHomeScreen({ navigation }) {
               source={require("../.././assets/logo.png")}
             />
           </View>
-          <TouchableHighlight onPress={handleSignOut}>
-            <Text>SIGN OUT</Text>
-          </TouchableHighlight>
         </View>
 
         {/* line up cards */}

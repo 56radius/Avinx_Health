@@ -1,8 +1,20 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { Ionicons, AntDesign } from "@expo/vector-icons";
 
-export default function App() {
+//Expo Vector Icons
+import { Ionicons, AntDesign, MaterialIcons } from "@expo/vector-icons";
+
+//firebase auth for sign out
+import { getAuth, signOut } from "firebase/auth";
+
+export default function App({ navigation }) {
+  const handleSignOut = () => {
+    // Sign out of Firebase Auth
+    const auth = getAuth();
+
+    signOut(auth).then(() => navigation.navigate("Login"));
+  };
+
   return (
     <View style={styles.container}>
       {/* profile picture and name */}
@@ -32,7 +44,7 @@ export default function App() {
         <TouchableOpacity style={styles.profileItem}>
           <View style={styles.profileItemLeft}>
             <Ionicons name="people-outline" size={24} color="black" />
-            <Text style={styles.profileTitle}>My Team</Text>
+            <Text style={styles.profileTitle}> Status </Text>
           </View>
           <Text style={styles.profileArrow}>→</Text>
         </TouchableOpacity>
@@ -53,6 +65,24 @@ export default function App() {
           <Text style={styles.profileArrow}>→</Text>
         </TouchableOpacity>
 
+        {/* Feedback */}
+        <TouchableOpacity style={styles.profileItem}>
+          <View style={styles.profileItemLeft}>
+            <MaterialIcons name="feedback" size={24} color="black" />
+            <Text style={styles.profileTitle}> Feedback </Text>
+          </View>
+          <Text style={styles.profileArrow}>→</Text>
+        </TouchableOpacity>
+
+        {/* Data Privacy */}
+        <TouchableOpacity style={styles.profileItem}>
+          <View style={styles.profileItemLeft}>
+            <MaterialIcons name="privacy-tip" size={24} color="black" />
+            <Text style={styles.profileTitle}> Privacy </Text>
+          </View>
+          <Text style={styles.profileArrow}>→</Text>
+        </TouchableOpacity>
+
         {/* Settings */}
         <TouchableOpacity style={styles.profileItem}>
           <View style={styles.profileItemLeft}>
@@ -64,13 +94,24 @@ export default function App() {
       </View>
 
       {/* Log out button */}
-      <View style={{ width: "60%" }}>
+      <View
+        style={{
+          width: "40%",
+          justifyContent: "center",
+        }}
+      >
         <TouchableOpacity
+          onPress={handleSignOut}
           style={{
             borderWidth: 2,
+            alignItems: "center",
+            paddingVertical: 8,
+            borderRadius: 10,
+            backgroundColor: "blue",
+            borderColor: "blue",
           }}
         >
-          <Text> Log Out </Text>
+          <Text style={{ color: "#fff", fontWeight: "bold" }}> Log Out </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -81,7 +122,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 60,
+    marginTop: 40,
   },
 
   profileItem: {
@@ -100,10 +141,10 @@ const styles = StyleSheet.create({
   profileTitle: {
     fontSize: 18,
     fontWeight: "bold",
-    marginLeft: 10,
+    marginLeft: 8,
   },
   profileArrow: {
     fontSize: 24,
-    marginLeft: 190,
+    marginLeft: 175,
   },
 });
