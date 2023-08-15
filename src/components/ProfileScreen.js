@@ -31,8 +31,19 @@ export default function App({ navigation }) {
           source={require("../.././assets/clover.jpg")}
         />
 
-        <Text style={{ fontWeight: "bold", paddingVertical: 10 }}>
-          Merit Mohammed
+        <Text
+          style={{
+            fontWeight: "bold",
+            paddingVertical: 10,
+            textAlign: "center",
+          }}
+        >
+          Anuoluwapo Sleep
+          {"\n"}
+          <Text style={{ textAlign: "center", color: "gray" }}>
+            {" "}
+            @anulovessleep{" "}
+          </Text>
         </Text>
       </View>
 

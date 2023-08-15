@@ -11,6 +11,7 @@ import DashboardScreen from "./src/screens/DashboardScreen";
 import SplashScreen from "./src/components/SplashScreen";
 import ChatScreen from "./src/screens/ChatScreen";
 import MyProfileScreen from "././src/screens/MyProfileScreen";
+import ForgotPasswordScreen from "./src/screens/ForgotPasswordScreen";
 
 //Expo Vector Icons
 import {
