@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, View, Text } from "react-native";
+import { Button, View, Text, TouchableOpacity } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -10,7 +10,15 @@ import SignUpScreen from "./src/screens/SignUpScreen";
 import DashboardScreen from "./src/screens/DashboardScreen";
 import SplashScreen from "./src/components/SplashScreen";
 import ChatScreen from "./src/screens/ChatScreen";
-import ForgotPasswordScreen from "./src/screens/ForgotPasswordScreen";
+import MyProfileScreen from "././src/screens/MyProfileScreen";
+
+//Expo Vector Icons
+import {
+  Ionicons,
+  AntDesign,
+  MaterialIcons,
+  Feather,
+} from "@expo/vector-icons";
 
 //firebase authentication
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -58,6 +66,26 @@ export default function App() {
               name="ChatScreen"
               component={ChatScreen}
               options={{ title: "AVA" }}
+            />
+
+            {/* Edit Profile Screen */}
+            <Stack.Screen
+              name="MyProfileScreen"
+              component={MyProfileScreen}
+              options={({ navigation }) => ({
+                title: "My Profile",
+                headerTransparent: true,
+                headerRight: () => (
+                  <TouchableOpacity
+                    onPress={() => {
+                      // Add any action you want when the icon is pressed
+                    }}
+                    style={{ marginRight: 10 }}
+                  >
+                    <Feather name="edit" size={24} color="black" />
+                  </TouchableOpacity>
+                ),
+              })}
             />
           </>
         ) : (

@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Animated,
+} from "react-native";
 
 //Expo Vector Icons
 import { Ionicons, AntDesign, MaterialIcons } from "@expo/vector-icons";
@@ -32,7 +39,10 @@ export default function App({ navigation }) {
       {/* List */}
       <View style={{ paddingVertical: 25 }}>
         {/* Edit Profile */}
-        <TouchableOpacity style={styles.profileItem}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("MyProfileScreen")}
+          style={styles.profileItem}
+        >
           <View style={styles.profileItemLeft}>
             <AntDesign name="edit" size={24} color="black" />
             <Text style={styles.profileTitle}> Profile </Text>
@@ -48,6 +58,8 @@ export default function App({ navigation }) {
           </View>
           <Text style={styles.profileArrow}>→</Text>
         </TouchableOpacity>
+
+        {/* Search */}
         <TouchableOpacity style={styles.profileItem}>
           <View style={styles.profileItemLeft}>
             <Ionicons name="search-outline" size={24} color="black" />
