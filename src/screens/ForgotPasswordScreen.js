@@ -18,13 +18,13 @@ export default function ForgotPasswordScreen({ navigation }) {
   const handleSubmit = () => {
     sendPasswordResetEmail(authConfig, email)
       .then(() => {
-        // Password reset email sent!
-        // ..
+        Alert.alert("Success", "Login successful!");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..
+        Alert.alert("Error", errorMessage);
       });
   };
 
