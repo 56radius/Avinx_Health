@@ -12,6 +12,7 @@ import SplashScreen from "./src/components/SplashScreen";
 import ChatScreen from "./src/screens/ChatScreen";
 import MyProfileScreen from "././src/screens/MyProfileScreen";
 import ForgotPasswordScreen from "./src/screens/ForgotPasswordScreen";
+import EditProfileScreen from "./src/screens/EditProfileScreen";
 
 //Expo Vector Icons
 import {
@@ -69,7 +70,7 @@ export default function App() {
               options={{ title: "AVA" }}
             />
 
-            {/* Edit Profile Screen */}
+            {/* My Profile Screen */}
             <Stack.Screen
               name="MyProfileScreen"
               component={MyProfileScreen}
@@ -79,7 +80,7 @@ export default function App() {
                 headerRight: () => (
                   <TouchableOpacity
                     onPress={() => {
-                      // Add any action you want when the icon is pressed
+                      navigation.navigate("EditProfileScreen");
                     }}
                     style={{ marginRight: 10 }}
                   >
@@ -87,6 +88,16 @@ export default function App() {
                   </TouchableOpacity>
                 ),
               })}
+            />
+
+            {/* Edit Profile Screen */}
+            <Stack.Screen
+              name="EditProfileScreen"
+              component={EditProfileScreen}
+              options={{
+                headerTransparent: true,
+                title: "Edit Profile",
+              }}
             />
           </>
         ) : (
