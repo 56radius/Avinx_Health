@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  Alert,
 } from "react-native";
 
 //firebase auth
@@ -18,7 +19,7 @@ export default function ForgotPasswordScreen({ navigation }) {
   const handleSubmit = () => {
     sendPasswordResetEmail(authConfig, email)
       .then(() => {
-        Alert.alert("Success", "Login successful!");
+        Alert.alert("Success", "Link sent!");
       })
       .catch((error) => {
         const errorCode = error.code;

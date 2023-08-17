@@ -14,6 +14,8 @@ import {
 import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+//firebase authentication
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import app from "../backend/firebase.config";
 
@@ -63,7 +65,7 @@ export default function CreateComplainScreen({ navigation }) {
           />
         </View>
 
-        {/* Password */}
+        {/* complaint text description */}
         <View style={styles.inputContainer}>
           <TextInput
             value={message}
@@ -88,7 +90,7 @@ export default function CreateComplainScreen({ navigation }) {
             }}
           >
             <Text style={{ fontWeight: "bold", color: "#fff" }}>
-              {loading ? "Loadig..." : "Send Complain"}
+              {loading ? "Loading..." : "Send Complain"}
             </Text>
           </TouchableOpacity>
         </View>

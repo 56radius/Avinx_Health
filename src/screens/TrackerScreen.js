@@ -24,29 +24,34 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import app from "../backend/firebase.config";
-
 const dbRef = getFirestore(app);
+
 export default function TrackerScreen({ navigation }) {
-  const [dataSnapshot, setDataSnapshot] = useState();
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
+  const [dataSnapshot, setDataSnapshot] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const handleDelete = async (docId) => {
-    await deleteDoc(doc(collection(dbRef, "complains"), docId));
+    try {
+      await deleteDoc(doc(collection(dbRef, "complains"), docId));
+      // Update dataSnapshot after deletion
+      setDataSnapshot((prevData) => prevData.filter((doc) => doc.id !== docId));
+    } catch (error) {
+      console.log("Error deleting document:", error);
+    }
   };
 
   useEffect(() => {
     async function getComplains() {
       setLoading(true);
       try {
-        let complains = [];
+        const complains = [];
         const querySnapshot = await getDocs(collection(dbRef, "complains"));
         querySnapshot.forEach((doc) => {
           const data = doc.data();
           const result = {
-            title: doc.title,
-            ...data,
+            id: doc.id, // Add id to the result object
+            title: data.title,
+            message: data.message,
           };
           complains.push(result);
         });
@@ -54,8 +59,7 @@ export default function TrackerScreen({ navigation }) {
         setDataSnapshot(complains);
         setLoading(false);
       } catch (error) {
-        console.log("erro ", error);
-        setError(error);
+        console.log("Error fetching documents:", error);
         setLoading(false);
       }
     }
@@ -65,7 +69,7 @@ export default function TrackerScreen({ navigation }) {
 
   if (loading) {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Loading...</Text>
       </View>
     );
@@ -80,33 +84,27 @@ export default function TrackerScreen({ navigation }) {
         </Text>
       </View>
 
-      {loading && <Text> Loading...</Text>}
-
-      {!!dataSnapshot &&
-        dataSnapshot.map((doc) => {
-          return (
-            <View key={doc.id}>
-              <Text> {doc.id} </Text>
-              <Text> {doc.title} </Text>
-              <Text> {doc.message} </Text>
-
-              <TouchableOpacity
-                onPress={() => handleDelete(doc.id)} // Pass the document ID
-                style={{
-                  width: "40%",
-                  paddingVertical: 8,
-                  paddingHorizontal: 10,
-                  borderWidth: 2,
-                  borderRadius: 10,
-                  backgroundColor: "grey",
-                  borderColor: "grey",
-                }}
-              >
-                <Text style={{ color: "#fff" }}> Delete </Text>
-              </TouchableOpacity>
-            </View>
-          );
-        })}
+      {dataSnapshot.map((doc) => (
+        <View key={doc.id}>
+          <Text> {doc.id} </Text>
+          <Text> {doc.title} </Text>
+          <Text> {doc.message} </Text>
+          <TouchableOpacity
+            onPress={() => handleDelete(doc.id)}
+            style={{
+              width: "40%",
+              paddingVertical: 8,
+              paddingHorizontal: 10,
+              borderWidth: 2,
+              borderRadius: 10,
+              backgroundColor: "grey",
+              borderColor: "grey",
+            }}
+          >
+            <Text style={{ color: "#fff" }}> Delete </Text>
+          </TouchableOpacity>
+        </View>
+      ))}
     </View>
   );
 }

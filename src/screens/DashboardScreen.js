@@ -62,7 +62,6 @@ function Dashboard() {
           ),
           tabBarIconStyle: {
             marginTop: -40,
-            // Adjust this value as needed
           },
         }}
       />
