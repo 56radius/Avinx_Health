@@ -1,48 +1,86 @@
-import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Image,
-  TextInput,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React, { useState } from "react";
+import { View, StyleSheet } from "react-native";
+import { GiftedChat, Bubble, Send } from "react-native-gifted-chat";
+import { Ionicons } from "@expo/vector-icons"; // Make sure to install the package
 
-const chatData = [
-  { id: "1", text: "Hi there!", isSent: true },
-  { id: "2", text: "Hello!", isSent: false },
-  // Add more chat messages here
-];
+const ChatScreen = ({ navigation }) => {
+  const [messages, setMessages] = useState([]);
 
-const ChatScreen = (navigation) => {
+  const therapistResponse = (userMessage) => {
+    const messageText = userMessage.toLowerCase();
+
+    if (messageText.includes("hello")) {
+      return "Hello there! How can I assist you today?";
+    } else if (messageText.includes("how are you")) {
+      return "I'm fine, but I'm here to help!";
+    } else if (messageText.includes("thank you")) {
+      return "You're welcome! Feel free to ask anything.";
+    } else {
+      return "I'm here to listen. Please feel free to share.";
+    }
+  };
+
+  const handleUserMessage = (newMessages = []) => {
+    const userMessage = newMessages[0];
+    const therapistReply = therapistResponse(userMessage.text);
+
+    setMessages([
+      {
+        _id: Math.round(Math.random() * 1000000),
+        text: therapistReply,
+        createdAt: new Date(),
+        user: { _id: 2, name: "AVA" },
+      },
+      {
+        _id: Math.round(Math.random() * 1000000),
+        text: userMessage.text,
+        createdAt: new Date(),
+        user: { _id: 1, name: "User" },
+      },
+      ...messages,
+    ]);
+  };
+
+  const renderBubble = (props) => {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: "#3772FF", // User's message background color
+          },
+          left: {
+            backgroundColor: "#E5E5E5", // Bot's message background color
+          },
+        }}
+        textStyle={{
+          right: {
+            color: "white", // User's message text color
+          },
+        }}
+      />
+    );
+  };
+
+  const renderSend = (props) => {
+    return (
+      <Send {...props}>
+        <View style={styles.sendButtonContainer}>
+          <Ionicons name="send" size={28} color="#3772FF" />
+        </View>
+      </Send>
+    );
+  };
+
   return (
     <View style={styles.container}>
-      <FlatList
-        data={chatData}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View
-            style={[
-              styles.messageContainer,
-              item.isSent ? styles.sent : styles.received,
-            ]}
-          >
-            {!item.isSent && (
-              <Image
-                source={require("../.././assets/icon.png")}
-                style={styles.profileImage}
-              />
-            )}
-            <Text style={styles.messageText}>{item.text}</Text>
-          </View>
-        )}
+      <GiftedChat
+        messages={messages}
+        onSend={handleUserMessage}
+        user={{ _id: 1 }}
+        renderBubble={renderBubble}
+        renderSend={renderSend}
       />
-      <View style={styles.inputContainer}>
-        <Ionicons name="ios-chatbox-outline" size={24} color="black" />
-        <TextInput style={styles.input} placeholder="Type a message..." />
-        <Ionicons name="ios-send" size={24} color="blue" />
-      </View>
     </View>
   );
 };
@@ -50,44 +88,12 @@ const ChatScreen = (navigation) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-end",
+    backgroundColor: "#F7F7F7", // Chat screen background color
   },
-  messageContainer: {
-    flexDirection: "row",
+  sendButtonContainer: {
+    justifyContent: "center",
     alignItems: "center",
-    padding: 10,
-  },
-  sent: {
-    justifyContent: "flex-end",
-  },
-  received: {
-    justifyContent: "flex-start",
-  },
-  profileImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
     marginRight: 10,
-  },
-  messageText: {
-    fontSize: 16,
-    backgroundColor: "#E0E0E0",
-    padding: 10,
-    borderRadius: 10,
-    maxWidth: "70%",
-  },
-  inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#F0F0F0",
-    padding: 10,
-  },
-  input: {
-    flex: 1,
-    marginHorizontal: 10,
-    padding: 10,
-    backgroundColor: "#FFFFFF",
-    borderRadius: 20,
   },
 });
 

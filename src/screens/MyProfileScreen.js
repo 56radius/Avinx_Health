@@ -102,15 +102,21 @@ export default function EditProfileScreen({ navigation }) {
             </View>
           </TouchableOpacity>
 
-          {/* Help and support */}
+          {/* Gender */}
           <TouchableOpacity style={styles.profileItem}>
             <View style={styles.profileItemLeft}>
-              <Ionicons name="ios-help-circle" size={24} color="black" />
-              <Text style={styles.profileTitle}> Support </Text>
+              <FontAwesome name="birthday-cake" size={24} color="black" />
+              <Text style={styles.profileTitle}>
+                Gender {"\n"}
+                <Text style={{ color: "gray", fontSize: 12 }}>
+                  {" "}
+                  Transgender{" "}
+                </Text>
+              </Text>
             </View>
           </TouchableOpacity>
 
-          {/* Gender */}
+          {/* Phone */}
           <TouchableOpacity style={styles.profileItem}>
             <View style={styles.profileItemLeft}>
               <Feather name="phone" size={24} color="black" />
@@ -120,14 +126,6 @@ export default function EditProfileScreen({ navigation }) {
                   +2348101295652
                 </Text>
               </Text>
-            </View>
-          </TouchableOpacity>
-
-          {/* Data Privacy */}
-          <TouchableOpacity style={styles.profileItem}>
-            <View style={styles.profileItemLeft}>
-              <MaterialIcons name="privacy-tip" size={24} color="black" />
-              <Text style={styles.profileTitle}> Privacy </Text>
             </View>
           </TouchableOpacity>
 

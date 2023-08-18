@@ -22,7 +22,7 @@ export default function EditProfileScreen({ navigation }) {
 
           <View
             style={{
-              width: "50%",
+              width: "45%",
               margin: 12,
               justifyContent: "center",
             }}
@@ -36,7 +36,7 @@ export default function EditProfileScreen({ navigation }) {
                 alignItems: "center",
               }}
             >
-              <Text> Change Profile Picture </Text>
+              <Text style={{ fontSize: 12 }}> Change Profile Picture </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -70,7 +70,7 @@ export default function EditProfileScreen({ navigation }) {
             </View>
             <View
               style={{
-                borderColor: "black",
+                borderColor: "blue",
                 borderWidth: 2,
                 borderRadius: 20,
                 padding: 10,
@@ -87,6 +87,16 @@ export default function EditProfileScreen({ navigation }) {
             </View>
             <View style={styles.inputContainer}>
               <TextInput placeholder="Birthdate" style={styles.input} />
+            </View>
+          </View>
+
+          {/* Gender */}
+          <View>
+            <View style={{ paddingVertical: 7 }}>
+              <Text> Gender </Text>
+            </View>
+            <View style={styles.inputContainer}>
+              <TextInput placeholder="Gender" style={styles.input} />
             </View>
           </View>
 
@@ -112,7 +122,7 @@ export default function EditProfileScreen({ navigation }) {
         </View>
 
         {/* Submit */}
-        <View style={{ justifyContent: "center", width: "45%", marginTop: 10 }}>
+        <View style={{ justifyContent: "center", width: "45%" }}>
           <TouchableOpacity
             style={{
               borderWidth: 2,
