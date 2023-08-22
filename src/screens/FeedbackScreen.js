@@ -26,16 +26,55 @@ export default function FeedbackScreen({ navigation }) {
         {/* Form */}
         <View style={styles.form}>
           {/* Text input for email address */}
-          <View>
-            <TextInput />
+          <View
+            style={{
+              borderWidth: 2,
+              borderRadius: 8,
+              width: "60%",
+            }}
+          >
+            <TextInput
+              style={{
+                paddingHorizontal: 10,
+              }}
+              placeholder="Enter your Email address"
+            />
           </View>
 
           {/* Text input for comment */}
-          <View>
-            <TextInput />
+          <View
+            style={{
+              borderWidth: 2,
+              borderRadius: 8,
+              width: "60%",
+              height: 80,
+            }}
+          >
+            <TextInput
+              style={{ paddingHorizontal: 10 }}
+              placeholder="Say something here..."
+            />
           </View>
 
           {/* TouchableOpacity for the submit button */}
+          <View
+            style={{
+              width: "40%",
+            }}
+          >
+            <TouchableOpacity
+              style={{
+                borderWidth: 2,
+              }}
+            >
+              <Text> Publish Feedback </Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* copyright */}
+          <View>
+            <Text> @AvinxNation . All rights reserved </Text>
+          </View>
         </View>
       </View>
     </ScrollView>
@@ -53,5 +92,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: "flex-start",
     paddingHorizontal: 30,
+  },
+
+  form: {
+    padding: 20,
   },
 });
