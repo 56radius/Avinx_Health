@@ -89,7 +89,10 @@ export default function App({ navigation }) {
         </TouchableOpacity>
 
         {/* Feedback */}
-        <TouchableOpacity style={styles.profileItem}>
+        <TouchableOpacity
+          style={styles.profileItem}
+          onPress={() => navigation.navigate("Feedback")}
+        >
           <View style={styles.profileItemLeft}>
             <MaterialIcons name="feedback" size={24} color="black" />
             <Text style={styles.profileTitle}> Feedback </Text>

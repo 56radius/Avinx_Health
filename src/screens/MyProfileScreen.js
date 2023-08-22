@@ -20,7 +20,7 @@ import {
   FontAwesome,
 } from "@expo/vector-icons";
 
-export default function EditProfileScreen({ navigation }) {
+export default function MyProfileScreen({ navigation }) {
   return (
     <ScrollView>
       <View style={styles.container}>

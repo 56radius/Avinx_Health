@@ -30,6 +30,7 @@ export default function TrackerScreen({ navigation }) {
   const [dataSnapshot, setDataSnapshot] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  //handle delete button
   const handleDelete = async (docId) => {
     try {
       await deleteDoc(doc(collection(dbRef, "complains"), docId));

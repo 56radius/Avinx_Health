@@ -7,12 +7,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./src/screens/HomeScreen";
 import LoginScreen from "./src/screens/LoginScreen";
 import SignUpScreen from "./src/screens/SignUpScreen";
+import ForgotPasswordScreen from "./src/screens/ForgotPasswordScreen";
 import DashboardScreen from "./src/screens/DashboardScreen";
 import SplashScreen from "./src/components/SplashScreen";
 import ChatScreen from "./src/screens/ChatScreen";
 import MyProfileScreen from "././src/screens/MyProfileScreen";
-import ForgotPasswordScreen from "./src/screens/ForgotPasswordScreen";
 import EditProfileScreen from "./src/screens/EditProfileScreen";
+import FeedbackScreen from "./src/screens/FeedbackScreen";
 
 //Expo Vector Icons
 import {
@@ -24,6 +25,7 @@ import {
 
 //firebase authentication
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import FeedbackScreen from "./src/screens/FeedbackScreen";
 const Stack = createNativeStackNavigator();
 const auth = getAuth();
 
@@ -97,6 +99,15 @@ export default function App() {
               options={{
                 headerTransparent: true,
                 title: "Edit Profile",
+              }}
+            />
+
+            {/* Feedback screen */}
+            <Stack.Screen
+              name="Feedback"
+              component={FeedbackScreen}
+              title={{
+                headerTransparent: true,
               }}
             />
           </>

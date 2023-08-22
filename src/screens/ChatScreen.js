@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { GiftedChat, Bubble, Send } from "react-native-gifted-chat";
-import { Ionicons } from "@expo/vector-icons"; // Make sure to install the package
+import { Ionicons } from "@expo/vector-icons";
 
 const ChatScreen = ({ navigation }) => {
   const [messages, setMessages] = useState([]);
@@ -29,7 +29,7 @@ const ChatScreen = ({ navigation }) => {
         _id: Math.round(Math.random() * 1000000),
         text: therapistReply,
         createdAt: new Date(),
-        user: { _id: 2, name: "AVA" },
+        user: { _id: 2, name: "" },
       },
       {
         _id: Math.round(Math.random() * 1000000),
@@ -88,7 +88,7 @@ const ChatScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F7F7F7", // Chat screen background color
+    backgroundColor: "#F7F7F7",
   },
   sendButtonContainer: {
     justifyContent: "center",
