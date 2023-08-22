@@ -11,8 +11,15 @@ import {
 //firebase authentication
 
 //expo vector icon
+import { AntDesign } from "@expo/vector-icons";
 
 export default function FeedbackScreen({ navigation }) {
+  const [selectedRating, setSelectedRating] = useState(null);
+
+  const handleRatingSelect = (rating) => {
+    setSelectedRating(rating);
+  };
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -41,6 +48,58 @@ export default function FeedbackScreen({ navigation }) {
             />
           </View>
 
+          {/* Rating Experience */}
+          <View style={styles.ratingContainer}>
+            <Text>Rate Your Experience:</Text>
+            <View style={styles.emojiContainer}>
+              <TouchableOpacity
+                onPress={() => handleRatingSelect("😡")}
+                style={[
+                  styles.emoji,
+                  selectedRating === "😡" && styles.selectedEmoji,
+                ]}
+              >
+                <Text style={{ fontSize: 24 }}>😡</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => handleRatingSelect("😕")}
+                style={[
+                  styles.emoji,
+                  selectedRating === "😕" && styles.selectedEmoji,
+                ]}
+              >
+                <Text style={{ fontSize: 24 }}>😕</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => handleRatingSelect("😐")}
+                style={[
+                  styles.emoji,
+                  selectedRating === "😐" && styles.selectedEmoji,
+                ]}
+              >
+                <Text style={{ fontSize: 24 }}>😐</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => handleRatingSelect("😄")}
+                style={[
+                  styles.emoji,
+                  selectedRating === "😄" && styles.selectedEmoji,
+                ]}
+              >
+                <Text style={{ fontSize: 24 }}>😄</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => handleRatingSelect("😍")}
+                style={[
+                  styles.emoji,
+                  selectedRating === "😍" && styles.selectedEmoji,
+                ]}
+              >
+                <Text style={{ fontSize: 24 }}>😍</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+
           {/* Text input for comment */}
           <View
             style={{
@@ -53,6 +112,7 @@ export default function FeedbackScreen({ navigation }) {
             <TextInput
               style={{ paddingHorizontal: 10 }}
               placeholder="Say something here..."
+              multiline
             />
           </View>
 
@@ -65,9 +125,14 @@ export default function FeedbackScreen({ navigation }) {
             <TouchableOpacity
               style={{
                 borderWidth: 2,
+                borderColor: "green",
+                backgroundColor: "green",
+                borderRadius: 5,
+                paddingVertical: 8,
+                paddingHorizontal: 8,
               }}
             >
-              <Text> Publish Feedback </Text>
+              <Text style={{ fontWeight: "bold" }}> Publish Feedback </Text>
             </TouchableOpacity>
           </View>
 
