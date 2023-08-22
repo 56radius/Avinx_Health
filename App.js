@@ -25,7 +25,8 @@ import {
 
 //firebase authentication
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import FeedbackScreen from "./src/screens/FeedbackScreen";
+
+//creating stack navigator
 const Stack = createNativeStackNavigator();
 const auth = getAuth();
 
@@ -103,13 +104,7 @@ export default function App() {
             />
 
             {/* Feedback screen */}
-            <Stack.Screen
-              name="Feedback"
-              component={FeedbackScreen}
-              title={{
-                headerTransparent: true,
-              }}
-            />
+            <Stack.Screen name="Feedback" component={FeedbackScreen} />
           </>
         ) : (
           <>
