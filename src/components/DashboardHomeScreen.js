@@ -27,9 +27,12 @@ import {
   MaterialIcons,
   AntDesign,
   MaterialCommunityIcons,
+  SimpleLineIcons,
 } from "@expo/vector-icons";
 
+//importing dashboard components
 import Footer from "./Footer";
+import StandaloneCards from "./StandaloneCards";
 
 export default function DashboardHomeScreen({ navigation }) {
   // Sample card data
@@ -255,103 +258,7 @@ export default function DashboardHomeScreen({ navigation }) {
 
         {/* Standalone Cards */}
         {/* First part of the card */}
-        <View style={styles.StandloneCards}>
-          <View style={{ flex: 0.8, alignItems: "center" }}>
-            {/* Icons */}
-            <MaterialCommunityIcons
-              style={{
-                borderWidth: 2,
-                borderRadius: 40,
-                borderColor: "gray",
-              }}
-              name="bed-double"
-              size={80}
-              color="blue"
-            />
-          </View>
-
-          {/* Text Icons */}
-          <View style={{ marginBottom: 30 }}>
-            <Text style={{ color: "#fff" }}> Set Up Sleep </Text>
-            <Text style={{ color: "#fff" }}>
-              Your devices can help you get better sleep and understand your
-              sleep patterns
-            </Text>
-          </View>
-
-          {/* Get Started button*/}
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <TouchableOpacity
-              style={{
-                borderWidth: 2,
-                width: "60%",
-                alignItems: "center",
-                paddingVertical: 9,
-                backgroundColor: "green",
-                borderColor: "green",
-                borderRadius: 10,
-              }}
-            >
-              <Text style={{ color: "#fff", fontWeight: "bold" }}>
-                Get Started
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {/* second part of the card */}
-        <View style={styles.StandloneCards}>
-          <View style={{ flex: 0.8, alignItems: "center" }}>
-            {/* Icons */}
-            <MaterialCommunityIcons
-              style={{
-                borderWidth: 2,
-                borderRadius: 40,
-                borderColor: "gray",
-              }}
-              name="bed-double"
-              size={80}
-              color="blue"
-            />
-          </View>
-
-          {/* Text Icons */}
-          <View style={{ marginBottom: 30 }}>
-            <Text style={{ color: "#fff" }}> Set Up Sleep </Text>
-            <Text style={{ color: "#fff" }}>
-              Your devices can help you get better sleep and understand your
-              sleep patterns
-            </Text>
-          </View>
-
-          {/* Get Started button*/}
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <TouchableOpacity
-              style={{
-                borderWidth: 2,
-                width: "60%",
-                alignItems: "center",
-                paddingVertical: 9,
-                backgroundColor: "green",
-                borderColor: "green",
-                borderRadius: 10,
-              }}
-            >
-              <Text style={{ color: "#fff" }}> Get Started </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
+        <StandaloneCards />
         {/* Footer */}
         <Footer />
       </View>
@@ -453,8 +360,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  //stanalone cards
-  StandloneCards: {
+  //standalone cards
+  StandaloneCards: {
     justifyContent: "center",
     borderWidth: 2,
     width: "89%",
