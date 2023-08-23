@@ -23,7 +23,7 @@ import {
   Octicons,
 } from "@expo/vector-icons";
 
-export default function StandaloneCards() {
+export default function SecondStandaloneCards() {
   // Create a ref for the bottom sheet
   const bottomSheetRef = React.useRef();
 

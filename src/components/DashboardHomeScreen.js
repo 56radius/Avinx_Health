@@ -259,6 +259,8 @@ export default function DashboardHomeScreen({ navigation }) {
         {/* Standalone Cards */}
         {/* First part of the card */}
         <StandaloneCards />
+
+        {/* Second standalone cards */}
         {/* Footer */}
         <Footer />
       </View>
