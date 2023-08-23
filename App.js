@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, View, Text, TouchableOpacity } from "react-native";
+
+//navigation stack imports
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 

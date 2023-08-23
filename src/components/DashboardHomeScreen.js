@@ -17,7 +17,13 @@ import {
   ContributionGraph,
   StackedBarChart,
 } from "react-native-chart-kit";
-import { Ionicons, Entypo, MaterialIcons, AntDesign } from "@expo/vector-icons";
+import {
+  Ionicons,
+  Entypo,
+  MaterialIcons,
+  AntDesign,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 
 export default function DashboardHomeScreen({ navigation }) {
   // Sample card data
@@ -25,9 +31,10 @@ export default function DashboardHomeScreen({ navigation }) {
     { id: "1", title: "Feedback", content: "Content for Card 1" },
     { id: "2", title: "Mind Health Trends", content: "Content for Card 2" },
     { id: "3", title: "Community", content: "Content for Card 3" },
-    { id: "4", title: "Card 4", content: "Jesus is good" },
+    { id: "4", title: "Spiritual Healing", content: "Jesus is good" },
   ];
 
+  //rendering item s
   const renderItem = ({ item, index }) => (
     <View style={styles.card}>
       <Text style={styles.cardTitle}>{item.title}</Text>
@@ -225,6 +232,120 @@ export default function DashboardHomeScreen({ navigation }) {
         </View>
 
         {/* Monitoring charts for sleep and mood */}
+
+        {/* More from health cards */}
+        <View
+          style={{
+            alignSelf: "flex-end",
+            paddingHorizontal: 26,
+            marginTop: 20, // Adjust this value to your preference
+          }}
+        >
+          <Text style={{}}>
+            <Text style={{ color: "green", fontSize: 19 }}> More From </Text>
+            <Text style={{ color: "blue", fontSize: 19 }}> Health </Text>
+          </Text>
+        </View>
+
+        {/* Standalone Cards */}
+        {/* First part of the card */}
+        <View style={styles.StandloneCards}>
+          <View style={{ flex: 0.8, alignItems: "center" }}>
+            {/* Icons */}
+            <MaterialCommunityIcons
+              style={{
+                borderWidth: 2,
+                borderRadius: 40,
+                borderColor: "gray",
+              }}
+              name="bed-double"
+              size={80}
+              color="blue"
+            />
+          </View>
+
+          {/* Text Icons */}
+          <View style={{ marginBottom: 30 }}>
+            <Text style={{ color: "#fff" }}> Set Up Sleep </Text>
+            <Text style={{ color: "#fff" }}>
+              Your devices can help you get better sleep and understand your
+              sleep patterns
+            </Text>
+          </View>
+
+          {/* Get Started button*/}
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <TouchableOpacity
+              style={{
+                borderWidth: 2,
+                width: "60%",
+                alignItems: "center",
+                paddingVertical: 9,
+                backgroundColor: "green",
+                borderColor: "green",
+                borderRadius: 10,
+              }}
+            >
+              <Text style={{ color: "#fff", fontWeight: "bold" }}>
+                {" "}
+                Get Started{" "}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* second part of the card */}
+        <View style={styles.StandloneCards}>
+          <View style={{ flex: 0.8, alignItems: "center" }}>
+            {/* Icons */}
+            <MaterialCommunityIcons
+              style={{
+                borderWidth: 2,
+                borderRadius: 40,
+                borderColor: "gray",
+              }}
+              name="bed-double"
+              size={80}
+              color="blue"
+            />
+          </View>
+
+          {/* Text Icons */}
+          <View style={{ marginBottom: 30 }}>
+            <Text style={{ color: "#fff" }}> Set Up Sleep </Text>
+            <Text style={{ color: "#fff" }}>
+              Your devices can help you get better sleep and understand your
+              sleep patterns
+            </Text>
+          </View>
+
+          {/* Get Started button*/}
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <TouchableOpacity
+              style={{
+                borderWidth: 2,
+                width: "60%",
+                alignItems: "center",
+                paddingVertical: 9,
+                backgroundColor: "green",
+                borderColor: "green",
+                borderRadius: 10,
+              }}
+            >
+              <Text style={{ color: "#fff" }}> Get Started </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </ScrollView>
   );
@@ -238,7 +359,7 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
   },
 
-  // Header
+  // Header and user info
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -322,5 +443,18 @@ const styles = StyleSheet.create({
   chartContainer: {
     marginTop: 20,
     alignItems: "center",
+  },
+
+  //stanalone cards
+  StandloneCards: {
+    justifyContent: "center",
+    borderWidth: 2,
+    width: "89%",
+    height: 280,
+    marginTop: 20,
+    borderRadius: 12,
+    backgroundColor: "#3b444b",
+    borderColor: "#3b444b",
+    padding: 20,
   },
 });

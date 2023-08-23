@@ -9,7 +9,13 @@ import {
 } from "react-native";
 
 //Expo Vector Icons
-import { Ionicons, AntDesign, MaterialIcons } from "@expo/vector-icons";
+import {
+  Ionicons,
+  AntDesign,
+  MaterialIcons,
+  Entypo,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 
 //firebase auth for sign out
 import { getAuth, signOut } from "firebase/auth";
@@ -70,11 +76,15 @@ export default function App({ navigation }) {
           <Text style={styles.profileArrow}>→</Text>
         </TouchableOpacity>
 
-        {/* Search */}
+        {/* Appearance */}
         <TouchableOpacity style={styles.profileItem}>
           <View style={styles.profileItemLeft}>
-            <Ionicons name="search-outline" size={24} color="black" />
-            <Text style={styles.profileTitle}> Search </Text>
+            <MaterialCommunityIcons
+              name="toggle-switch-off-outline"
+              size={24}
+              color="black"
+            />
+            <Text style={styles.profileTitle}> Appearance </Text>
           </View>
           <Text style={styles.profileArrow}>→</Text>
         </TouchableOpacity>
