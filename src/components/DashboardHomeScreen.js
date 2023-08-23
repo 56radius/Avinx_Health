@@ -9,6 +9,8 @@ import {
   FlatList,
 } from "react-native";
 import * as React from "react";
+
+//expo react-native chart-kit
 import {
   LineChart,
   BarChart,
@@ -17,6 +19,8 @@ import {
   ContributionGraph,
   StackedBarChart,
 } from "react-native-chart-kit";
+
+//expo vector icons
 import {
   Ionicons,
   Entypo,
@@ -24,6 +28,8 @@ import {
   AntDesign,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
+
+import Footer from "./Footer";
 
 export default function DashboardHomeScreen({ navigation }) {
   // Sample card data
@@ -292,8 +298,7 @@ export default function DashboardHomeScreen({ navigation }) {
               }}
             >
               <Text style={{ color: "#fff", fontWeight: "bold" }}>
-                {" "}
-                Get Started{" "}
+                Get Started
               </Text>
             </TouchableOpacity>
           </View>
@@ -346,6 +351,9 @@ export default function DashboardHomeScreen({ navigation }) {
             </TouchableOpacity>
           </View>
         </View>
+
+        {/* Footer */}
+        <Footer />
       </View>
     </ScrollView>
   );
