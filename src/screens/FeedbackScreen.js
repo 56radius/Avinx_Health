@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,10 +7,6 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-
-//firebase authentication
-
-//expo vector icon
 import { AntDesign } from "@expo/vector-icons";
 
 export default function FeedbackScreen({ navigation }) {
@@ -21,126 +17,50 @@ export default function FeedbackScreen({ navigation }) {
   };
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        {/* Header */}
-        <View style={styles.header}>
-          <Text style={{ color: "green", fontWeight: "bold", fontSize: 19 }}>
-            Give Feedback
-          </Text>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.form}>
+        <Text style={styles.headerText}>Give Feedback</Text>
+
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter your Email address"
+          />
         </View>
 
-        {/* Form */}
-        <View style={styles.form}>
-          {/* Text input for email address */}
-          <View
-            style={{
-              borderWidth: 2,
-              borderRadius: 8,
-              width: "60%",
-            }}
-          >
-            <TextInput
-              style={{
-                paddingHorizontal: 10,
-              }}
-              placeholder="Enter your Email address"
-            />
-          </View>
-
-          {/* Rating Experience */}
-          <View style={styles.ratingContainer}>
-            <Text>Rate Your Experience:</Text>
-            <View style={styles.emojiContainer}>
+        <View style={styles.ratingContainer}>
+          <Text style={styles.ratingText}>Rate Your Experience:</Text>
+          <View style={styles.emojiContainer}>
+            {["😡", "😕", "😐", "😄", "😍"].map((emoji) => (
               <TouchableOpacity
-                onPress={() => handleRatingSelect("😡")}
+                key={emoji}
+                onPress={() => handleRatingSelect(emoji)}
                 style={[
                   styles.emoji,
-                  selectedRating === "😡" && styles.selectedEmoji,
+                  selectedRating === emoji && styles.selectedEmoji,
                 ]}
               >
-                <Text style={{ fontSize: 24 }}>😡</Text>
+                <Text style={styles.emojiText}>{emoji}</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => handleRatingSelect("😕")}
-                style={[
-                  styles.emoji,
-                  selectedRating === "😕" && styles.selectedEmoji,
-                ]}
-              >
-                <Text style={{ fontSize: 24 }}>😕</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => handleRatingSelect("😐")}
-                style={[
-                  styles.emoji,
-                  selectedRating === "😐" && styles.selectedEmoji,
-                ]}
-              >
-                <Text style={{ fontSize: 24 }}>😐</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => handleRatingSelect("😄")}
-                style={[
-                  styles.emoji,
-                  selectedRating === "😄" && styles.selectedEmoji,
-                ]}
-              >
-                <Text style={{ fontSize: 24 }}>😄</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => handleRatingSelect("😍")}
-                style={[
-                  styles.emoji,
-                  selectedRating === "😍" && styles.selectedEmoji,
-                ]}
-              >
-                <Text style={{ fontSize: 24 }}>😍</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          {/* Text input for comment */}
-          <View
-            style={{
-              borderWidth: 2,
-              borderRadius: 8,
-              width: "60%",
-              height: 80,
-            }}
-          >
-            <TextInput
-              style={{ paddingHorizontal: 10 }}
-              placeholder="Say something here..."
-              multiline
-            />
-          </View>
-
-          {/* TouchableOpacity for the submit button */}
-          <View
-            style={{
-              width: "40%",
-            }}
-          >
-            <TouchableOpacity
-              style={{
-                borderWidth: 2,
-                borderColor: "green",
-                backgroundColor: "green",
-                borderRadius: 5,
-                paddingVertical: 8,
-                paddingHorizontal: 8,
-              }}
-            >
-              <Text style={{ fontWeight: "bold" }}> Publish Feedback </Text>
-            </TouchableOpacity>
-          </View>
-
-          {/* copyright */}
-          <View>
-            <Text> @AvinxNation . All rights reserved </Text>
+            ))}
           </View>
         </View>
+
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={[styles.input, styles.commentInput]}
+            placeholder="Say something here..."
+            multiline
+          />
+        </View>
+
+        <TouchableOpacity style={styles.submitButton}>
+          <Text style={styles.submitButtonText}>Publish Feedback</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.footerText}>
+          @AvinxNation. All rights reserved.
+        </Text>
       </View>
     </ScrollView>
   );
@@ -148,18 +68,86 @@ export default function FeedbackScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "Center",
+    flexGrow: 1,
+    justifyContent: "center",
     alignItems: "center",
   },
-
-  header: {
-    flex: 1,
-    alignSelf: "flex-start",
-    paddingHorizontal: 30,
-  },
-
   form: {
+    width: "80%",
+    alignItems: "center",
     padding: 20,
+    borderRadius: 10,
+    backgroundColor: "#fff",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  headerText: {
+    color: "green",
+    fontWeight: "bold",
+    fontSize: 24,
+    marginBottom: 20,
+  },
+  inputContainer: {
+    width: "100%",
+    marginBottom: 15,
+  },
+  input: {
+    borderWidth: 2,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    fontSize: 16,
+  },
+  ratingContainer: {
+    marginBottom: 20,
+  },
+  ratingText: {
+    fontSize: 18,
+    marginBottom: 10,
+  },
+  emojiContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  emoji: {
+    width: 40,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: "#ccc",
+  },
+  selectedEmoji: {
+    borderColor: "green",
+    backgroundColor: "green",
+  },
+  emojiText: {
+    fontSize: 24,
+  },
+  commentInput: {
+    height: 80,
+  },
+  submitButton: {
+    backgroundColor: "green",
+    borderRadius: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginBottom: 20,
+  },
+  submitButtonText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  footerText: {
+    color: "#aaa",
   },
 });

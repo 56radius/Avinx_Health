@@ -104,7 +104,14 @@ export default function App() {
             />
 
             {/* Feedback screen */}
-            <Stack.Screen name="Feedback" component={FeedbackScreen} />
+            <Stack.Screen
+              name="Feedback"
+              component={FeedbackScreen}
+              options={{
+                title: "Feedback",
+                headerTransparent: true,
+              }}
+            />
           </>
         ) : (
           <>
