@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -8,33 +8,43 @@ import {
   ScrollView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export default function SelfDiagnoserScreen() {
   const [symptoms, setSymptoms] = useState("");
   const [diagnosis, setDiagnosis] = useState("");
+  const navigation = useNavigation();
 
   const handleDiagnose = () => {
-    // Perform basic logic for generating diagnosis based on symptoms (simplified for demonstration)
-    // This logic would typically be more complex and accurate in a real application
-    if (symptoms.toLowerCase().includes("fever")) {
-      setDiagnosis(
-        "You might have a fever. Please consult a medical professional."
-      );
-    } else if (symptoms.toLowerCase().includes("cough")) {
-      setDiagnosis(
-        "You might have a cough. Please consult a medical professional."
-      );
-    } else {
-      setDiagnosis(
-        "We couldn't determine the diagnosis. Please consult a medical professional."
-      );
-    }
+    // Your diagnosis logic here
+    // ...
+
+    // After determining diagnosis, update the state
+    setDiagnosis("...");
+
+    // Uncomment below and replace with your logic to navigate to the medical professionals screen
+    // navigation.navigate("MedicalProfessionals");
+  };
+
+  const handleAIResponse = () => {
+    // Simulate AI-like response
+    setDiagnosis(
+      "I'm analyzing your symptoms... It might be related to a common cold. Please consult a medical professional for accurate advice."
+    );
+  };
+
+  const navigateToMedicalProfessionals = () => {
+    // Navigate to the MedicalProfessionals screen
+    navigation.navigate("MedicalProfessionals");
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.form}>
-        <Text style={styles.header}>Self Diagnoser</Text>
+        <Text style={styles.header}>AVA Health Assistant</Text>
+        <Text style={styles.subtitle}>
+          I'm here to help diagnose your symptoms.
+        </Text>
         <TextInput
           style={styles.input}
           placeholder="Enter your symptoms"
@@ -45,9 +55,24 @@ export default function SelfDiagnoserScreen() {
         </TouchableOpacity>
         {diagnosis !== "" && (
           <View style={styles.diagnosisContainer}>
-            <Text style={styles.diagnosisText}>Diagnosis:</Text>
+            <Text style={styles.diagnosisText}>AVA's Diagnosis:</Text>
             <Text style={styles.diagnosisResult}>{diagnosis}</Text>
           </View>
+        )}
+
+        {diagnosis === "" && (
+          <TouchableOpacity onPress={handleAIResponse} style={styles.button}>
+            <Text style={styles.buttonText}>Ask AI for Help</Text>
+          </TouchableOpacity>
+        )}
+
+        {diagnosis !== "" && (
+          <TouchableOpacity
+            onPress={navigateToMedicalProfessionals}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Contact Medical Professional</Text>
+          </TouchableOpacity>
         )}
       </View>
     </ScrollView>
@@ -68,7 +93,13 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     fontWeight: "bold",
+    marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: 16,
     marginBottom: 20,
+    textAlign: "center",
+    color: "#777",
   },
   input: {
     borderWidth: 1,
@@ -84,18 +115,20 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 20,
+    marginBottom: 10,
   },
   buttonText: {
     color: "#fff",
     fontWeight: "bold",
+    textAlign: "center",
   },
   diagnosisContainer: {
-    marginTop: 20,
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 8,
     padding: 10,
     width: "100%",
+    marginBottom: 20,
   },
   diagnosisText: {
     fontSize: 18,
