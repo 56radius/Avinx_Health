@@ -6,9 +6,18 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { Entypo, Feather } from "@expo/vector-icons";
+
+//expo vector icons
+import { Entypo } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+
+//navigation
 import { useNavigation } from "@react-navigation/native";
+
+//importing screens
 import ChatScreen from ".././screens/ChatScreen";
+import SelfDiagnoserScreen from "../screens/SelfDiagnoserScreen";
 
 export default function ToolsScreen() {
   const navigation = useNavigation();
@@ -28,35 +37,37 @@ export default function ToolsScreen() {
               width: "48%",
               height: 150,
               backgroundColor: "blue",
-              borderRadius: 25,
+              borderRadius: 24,
               justifyContent: "center",
               alignItems: "center",
             }}
           >
-            <View style={{ alignSelf: "flex-start", paddingHorizontal: 18 }}>
-              {/* Icons */}
+            <View
+              style={{
+                alignSelf: "flex-start",
+                paddingHorizontal: 16,
+                flex: 0.5,
+              }}
+            >
               <TouchableOpacity
-                onPress={() => navigation.navigate("ChatScreen")}
                 style={{
                   borderWidth: 2,
-                  paddingVertical: 8,
-                  paddingHorizontal: 5,
-                  borderRadius: 19,
-                  backgroundColor: "#E0E0E0",
-                  borderColor: "#E0E0E0",
+                  paddingVertical: 10,
+                  paddingHorizontal: 8,
+                  borderRadius: 50,
+                  backgroundColor: "#fff",
                 }}
               >
-                <Feather name="book-open" size={24} color="green" />
+                <Feather name="book-open" size={20} color="green" />
               </TouchableOpacity>
             </View>
-            {/* Add content for the first card */}
+            {/* Add content for the second card */}
             <Text
               style={{
-                fontSize: 18,
+                alignSelf: "flex-start",
                 fontWeight: "bold",
-                marginBottom: 10,
-                paddingVertical: 15,
-                left: -8,
+                fontSize: 15,
+                paddingHorizontal: 16,
                 color: "#fff",
               }}
             >
@@ -66,6 +77,7 @@ export default function ToolsScreen() {
           </View>
 
           {/* Second Card */}
+          {/* Self Diagnoser */}
           <View
             style={{
               width: "48%",
@@ -76,8 +88,37 @@ export default function ToolsScreen() {
               alignItems: "center",
             }}
           >
+            <View
+              style={{
+                alignSelf: "flex-start",
+                paddingHorizontal: 16,
+                flex: 0.5,
+              }}
+            >
+              <TouchableOpacity
+                onPress={() => navigation.navigate("SelfDiagnoser")}
+                style={{
+                  borderWidth: 2,
+                  paddingVertical: 10,
+                  paddingHorizontal: 8,
+                  borderRadius: 50,
+                  backgroundColor: "#fff",
+                }}
+              >
+                <FontAwesome5 name="diagnoses" size={20} color="black" />
+              </TouchableOpacity>
+            </View>
             {/* Add content for the second card */}
-            <Text style={styles.cardTitle}> Self Diagnoser </Text>
+            <Text
+              style={{
+                alignSelf: "flex-start",
+                fontWeight: "bold",
+                fontSize: 15,
+                paddingHorizontal: 16,
+              }}
+            >
+              Self Diagnoser
+            </Text>
             {/* Add any other components or text for the card */}
           </View>
         </View>
@@ -174,4 +215,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
+
+  //first row styling
+
+  //second row styling
 });

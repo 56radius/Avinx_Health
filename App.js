@@ -16,6 +16,7 @@ import ChatScreen from "./src/screens/ChatScreen";
 import MyProfileScreen from "././src/screens/MyProfileScreen";
 import EditProfileScreen from "./src/screens/EditProfileScreen";
 import FeedbackScreen from "./src/screens/FeedbackScreen";
+import SelfDiagnoserScreen from "./src/screens/SelfDiagnoserScreen";
 
 //Expo Vector Icons
 import {
@@ -73,6 +74,13 @@ export default function App() {
               name="ChatScreen"
               component={ChatScreen}
               options={{ title: "AVA" }}
+            />
+
+            {/* Self Diagnoser Screen */}
+            <Stack.Screen
+              name="SelfDiagnoser"
+              component={SelfDiagnoserScreen}
+              options={{ title: "Self-diagnosis" }}
             />
 
             {/* My Profile Screen */}
