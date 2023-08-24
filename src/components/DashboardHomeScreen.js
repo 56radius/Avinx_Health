@@ -43,7 +43,7 @@ export default function DashboardHomeScreen({ navigation }) {
     { id: "4", title: "Spiritual Healing", content: "Jesus is good" },
   ];
 
-  //rendering item s
+  //rendering items
   const renderItem = ({ item, index }) => (
     <View style={styles.card}>
       <Text style={styles.cardTitle}>{item.title}</Text>
