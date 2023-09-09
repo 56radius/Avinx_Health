@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 
-//Firebase authentication
+// Firebase authentication
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { authConfig } from "../backend/firebase.config";
 
@@ -14,8 +14,10 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
+  Alert,
 } from "react-native";
-// import DateTimePicker from "@react-native-community/datetimepicker";
+
+import PhoneInput from "react-native-phone-input"; // Import the PhoneInput component
 
 // Vector iCons
 import { FontAwesome } from "@expo/vector-icons";
@@ -27,15 +29,18 @@ export default function SignUpScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [birthDate, setBirthDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState(""); // Added phone number state
 
   const handleSubmit = () => {
-    console.log("Registering ", email, password);
+    console.log("Registering ", email, password, phoneNumber); // Updated to include phoneNumber
     createUserWithEmailAndPassword(authConfig, email, password)
       .then((result) => {
         console.log("user created", result.user);
+        Alert.alert("Success", "Sign up successful");
       })
       .catch((err) => {
         console.log("Error ", err.message);
+        Alert.alert("Failure", "Omo e no sign up o");
       });
   };
 
@@ -45,6 +50,7 @@ export default function SignUpScreen({ navigation }) {
       setBirthDate(selectedDate);
     }
   };
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -82,6 +88,27 @@ export default function SignUpScreen({ navigation }) {
             />
           </View>
 
+          {/* Username */}
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="Username"
+              keyboardType="default"
+              autoCapitalize="words"
+            />
+          </View>
+
+          {/* Email */}
+          <View style={styles.inputContainer}>
+            <TextInput
+              onChangeText={(text) => setEmail(text)}
+              style={styles.input}
+              placeholder="Email address"
+              keyboardType="email-address"
+              autoCapitalize="none"
+            />
+          </View>
+
           {/* Birthday Date */}
           <View>
             <TouchableOpacity
@@ -95,27 +122,20 @@ export default function SignUpScreen({ navigation }) {
                 editable={false}
               />
             </TouchableOpacity>
-
-            {/* {showDatePicker && (
-              <DateTimePicker
-                value={birthDate}
-                mode="date"
-                display="spinner"
-                onChange={handleDateChange}
-              />
-            )} */}
           </View>
 
-          {/* gender */}
-
-          {/* Email */}
+          {/* Phone Number input */}
           <View style={styles.inputContainer}>
-            <TextInput
-              onChangeText={(text) => setEmail(text)}
-              style={styles.input}
-              placeholder="Email address"
-              keyboardType="email-address"
-              autoCapitalize="none"
+            <PhoneInput
+              ref={(ref) => {
+                this.phone = ref;
+              }}
+              textStyle={styles.input}
+              initialCountry="US"
+              value={phoneNumber}
+              onChangePhoneNumber={(number) => setPhoneNumber(number)}
+              cancelText="Cancel"
+              confirmText="Confirm"
             />
           </View>
 
@@ -125,18 +145,8 @@ export default function SignUpScreen({ navigation }) {
               onChangeText={(text) => setPassword(text)}
               style={styles.input}
               secureTextEntry
-              placeholder="password"
+              placeholder="Password"
               keyboardType="email-address"
-              autoCapitalize="none"
-            />
-          </View>
-
-          {/* Confirm password */}
-          <View style={styles.inputContainer}>
-            <TextInput
-              style={styles.input}
-              secureTextEntry
-              placeholder=" Confirm password"
               autoCapitalize="none"
             />
           </View>

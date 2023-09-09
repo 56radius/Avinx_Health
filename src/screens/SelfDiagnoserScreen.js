@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,35 +7,40 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
-export default function SelfDiagnoserScreen() {
+const SelfDiagnoserScreen = () => {
   const [symptoms, setSymptoms] = useState("");
   const [diagnosis, setDiagnosis] = useState("");
-  const navigation = useNavigation();
 
-  const handleDiagnose = () => {
-    // Your diagnosis logic here
-    // ...
+  const witAiAccessToken = "BCDVZDKLHBU4KEKYOVO6ASYVOUR2PDKC";
 
-    // After determining diagnosis, update the state
-    setDiagnosis("...");
+  const sendQueryToWitAi = async (query) => {
+    try {
+      const response = await axios.get("https://api.wit.ai/message", {
+        params: {
+          q: query,
+        },
+        headers: {
+          Authorization: `Bearer ${witAiAccessToken}`,
+        },
+      });
 
-    // Uncomment below and replace with your logic to navigate to the medical professionals screen
-    // navigation.navigate("MedicalProfessionals");
+      return response.data;
+    } catch (error) {
+      console.error("Error sending query to Wit.ai:", error);
+      return null;
+    }
   };
 
-  const handleAIResponse = () => {
-    // Simulate AI-like response
-    setDiagnosis(
-      "I'm analyzing your symptoms... It might be related to a common cold. Please consult a medical professional for accurate advice."
-    );
-  };
+  const handleDiagnose = async () => {
+    const query = `I've been feeling ${symptoms} lately.`;
+    const witAiResponse = await sendQueryToWitAi(query);
 
-  const navigateToMedicalProfessionals = () => {
-    // Navigate to the MedicalProfessionals screen
-    navigation.navigate("MedicalProfessionals");
+    if (witAiResponse) {
+      const diagnosedIntent = witAiResponse.intents[0].name;
+      setDiagnosis(diagnosedIntent);
+    }
   };
 
   return (
@@ -59,25 +64,10 @@ export default function SelfDiagnoserScreen() {
             <Text style={styles.diagnosisResult}>{diagnosis}</Text>
           </View>
         )}
-
-        {diagnosis === "" && (
-          <TouchableOpacity onPress={handleAIResponse} style={styles.button}>
-            <Text style={styles.buttonText}>Ask AI for Help</Text>
-          </TouchableOpacity>
-        )}
-
-        {diagnosis !== "" && (
-          <TouchableOpacity
-            onPress={navigateToMedicalProfessionals}
-            style={styles.button}
-          >
-            <Text style={styles.buttonText}>Contact Medical Professional</Text>
-          </TouchableOpacity>
-        )}
       </View>
     </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -139,3 +129,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
+export default SelfDiagnoserScreen;
