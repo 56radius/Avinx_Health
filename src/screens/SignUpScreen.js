@@ -1,55 +1,79 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-
-// Firebase authentication
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { authConfig } from "../backend/firebase.config";
-
 import {
   StyleSheet,
   Text,
   View,
   Image,
-  ImageBackground,
   ScrollView,
   TouchableOpacity,
   TextInput,
   Alert,
 } from "react-native";
 
-import PhoneInput from "react-native-phone-input"; // Import the PhoneInput component
-import Modal from "react-native-modal"; // Import the Modal component
-import { Button } from "react-native"; // Import the Button component
-
-// Vector iCons
+import PhoneInput from "react-native-phone-input";
+import Modal from "react-native-modal";
+import { Button } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
+// Firebase authentication
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { authConfig, app } from "../backend/firebase.config";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+
+const dbRef = getFirestore(app);
+
 export default function SignUpScreen({ navigation }) {
-  const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [birthDate, setBirthDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [selectedGender, setSelectedGender] = useState(""); // Added selectedGender state
-  const [isModalVisible, setModalVisible] = useState(false); // Added modal visibility state
+  const [selectedGender, setSelectedGender] = useState("");
+  const [password, setPassword] = useState("");
+  const [healthStatus, setHealthStatus] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const toggleModal = () => {
-    setModalVisible(!isModalVisible);
+    setIsModalVisible(!isModalVisible);
   };
 
-  const handleSubmit = () => {
-    console.log("Registering ", email, password, phoneNumber, selectedGender);
-    createUserWithEmailAndPassword(authConfig, email, password)
-      .then((result) => {
-        console.log("user created", result.user);
-        Alert.alert("Success", "Sign up successful");
-      })
-      .catch((err) => {
-        console.log("Error ", err.message);
-        Alert.alert("Failure", "Omo e no sign up o");
-      });
+  const handleSubmit = async () => {
+    try {
+      // First, create the user with email and password
+      const userCredential = await createUserWithEmailAndPassword(
+        authConfig,
+        email,
+        password
+      );
+
+      // Then, get the user's UID
+      const userUid = userCredential.user.uid;
+
+      // Create a new document in Firestore with user data
+      const userData = {
+        fullName,
+        username,
+        birthDate,
+        phoneNumber,
+        selectedGender,
+        healthStatus,
+        uid: userUid, // Add the UID for linking with the authentication
+      };
+
+      // Add the user data to Firestore
+      const docRef = await addDoc(collection(dbRef, "users"), userData);
+
+      console.log("User registered with UID: ", docRef.id);
+
+      Alert.alert("Success", "Sign up successful");
+    } catch (error) {
+      console.error("Error: ", error.message);
+      Alert.alert("Failure", "Omo e no sign up o");
+    }
   };
 
   const handleDateChange = (event, selectedDate) => {
@@ -89,6 +113,7 @@ export default function SignUpScreen({ navigation }) {
           {/* Full Name input */}
           <View style={styles.inputContainer}>
             <TextInput
+              onChangeText={(text) => setFullName(text)}
               style={styles.input}
               placeholder="Full Name"
               keyboardType="default"
@@ -96,9 +121,10 @@ export default function SignUpScreen({ navigation }) {
             />
           </View>
 
-          {/* Username */}
+          {/* Username input */}
           <View style={styles.inputContainer}>
             <TextInput
+              onChangeText={(text) => setUsername(text)}
               style={styles.input}
               placeholder="Username"
               keyboardType="default"
@@ -106,7 +132,7 @@ export default function SignUpScreen({ navigation }) {
             />
           </View>
 
-          {/* Email */}
+          {/* Email input */}
           <View style={styles.inputContainer}>
             <TextInput
               onChangeText={(text) => setEmail(text)}
@@ -132,21 +158,6 @@ export default function SignUpScreen({ navigation }) {
             </TouchableOpacity>
           </View>
 
-          {/* Phone Number input */}
-          <View style={styles.inputContainer}>
-            <PhoneInput
-              ref={(ref) => {
-                this.phone = ref;
-              }}
-              textStyle={styles.input}
-              initialCountry="US"
-              value={phoneNumber}
-              onChangePhoneNumber={(number) => setPhoneNumber(number)}
-              cancelText="Cancel"
-              confirmText="Confirm"
-            />
-          </View>
-
           {/* Gender */}
           {selectedGender ? (
             <View style={styles.inputContainer}>
@@ -161,9 +172,26 @@ export default function SignUpScreen({ navigation }) {
             </TouchableOpacity>
           )}
 
-          {/* Health Status */}
+          {/* Phone Number input */}
+          <View style={styles.inputContainer}>
+            <PhoneInput
+              ref={(ref) => {
+                this.phone = ref;
+              }}
+              textStyle={styles.input}
+              initialCountry="NG"
+              value={phoneNumber}
+              onChangePhoneNumber={(number) => setPhoneNumber(number)}
+              cancelText="Cancel"
+              confirmText="Confirm"
+              textProps={{ placeholder: "Phone Number" }}
+            />
+          </View>
+
+          {/* Health Status input */}
           <View style={styles.inputContainer}>
             <TextInput
+              onChangeText={(text) => setHealthStatus(text)}
               style={styles.input}
               placeholder="Health Status"
               keyboardType="default"
@@ -171,7 +199,7 @@ export default function SignUpScreen({ navigation }) {
             />
           </View>
 
-          {/* Password */}
+          {/* Password input */}
           <View style={styles.inputContainer}>
             <TextInput
               onChangeText={(text) => setPassword(text)}
@@ -309,10 +337,11 @@ const styles = StyleSheet.create({
 
   form: {
     padding: 20,
-    width: "100%",
+    width: "110%",
   },
 
   inputContainer: {
+    paddingVertical: 12,
     marginBottom: 15,
     borderColor: "#ccc",
     borderWidth: 1,
