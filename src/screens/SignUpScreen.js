@@ -18,6 +18,8 @@ import {
 } from "react-native";
 
 import PhoneInput from "react-native-phone-input"; // Import the PhoneInput component
+import Modal from "react-native-modal"; // Import the Modal component
+import { Button } from "react-native"; // Import the Button component
 
 // Vector iCons
 import { FontAwesome } from "@expo/vector-icons";
@@ -29,10 +31,16 @@ export default function SignUpScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [birthDate, setBirthDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState(""); // Added phone number state
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [selectedGender, setSelectedGender] = useState(""); // Added selectedGender state
+  const [isModalVisible, setModalVisible] = useState(false); // Added modal visibility state
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
   const handleSubmit = () => {
-    console.log("Registering ", email, password, phoneNumber); // Updated to include phoneNumber
+    console.log("Registering ", email, password, phoneNumber, selectedGender);
     createUserWithEmailAndPassword(authConfig, email, password)
       .then((result) => {
         console.log("user created", result.user);
@@ -139,6 +147,30 @@ export default function SignUpScreen({ navigation }) {
             />
           </View>
 
+          {/* Gender */}
+          {selectedGender ? (
+            <View style={styles.inputContainer}>
+              <Text style={{ fontSize: 16 }}>Gender: {selectedGender}</Text>
+            </View>
+          ) : (
+            <TouchableOpacity
+              onPress={toggleModal}
+              style={styles.inputContainer}
+            >
+              <Text style={{ fontSize: 16 }}>Gender</Text>
+            </TouchableOpacity>
+          )}
+
+          {/* Health Status */}
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="Health Status"
+              keyboardType="default"
+              autoCapitalize="words"
+            />
+          </View>
+
           {/* Password */}
           <View style={styles.inputContainer}>
             <TextInput
@@ -223,6 +255,34 @@ export default function SignUpScreen({ navigation }) {
         </View>
         <StatusBar style="auto" />
       </View>
+
+      {/* Gender Selection Modal */}
+      <Modal isVisible={isModalVisible}>
+        <View style={styles.modalContainer}>
+          <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 20 }}>
+            Select Gender
+          </Text>
+          <TouchableOpacity
+            onPress={() => {
+              setSelectedGender("Male");
+              toggleModal();
+            }}
+            style={styles.genderOption}
+          >
+            <Text>Male</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setSelectedGender("Female");
+              toggleModal();
+            }}
+            style={styles.genderOption}
+          >
+            <Text>Female</Text>
+          </TouchableOpacity>
+          <Button title="Cancel" onPress={toggleModal} />
+        </View>
+      </Modal>
     </ScrollView>
   );
 }
@@ -283,5 +343,24 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     backgroundColor: "#f2f2f2",
+  },
+
+  modalContainer: {
+    backgroundColor: "white",
+    padding: 22,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 4,
+    borderColor: "rgba(0, 0, 0, 0.1)",
+  },
+
+  genderOption: {
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
+  },
+
+  Submit: {
+    marginTop: 15,
   },
 });
