@@ -4,24 +4,25 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
-  ScrollView,
-  TouchableOpacity,
   TextInput,
+  TouchableOpacity,
+  ScrollView,
   Alert,
+  Button,
 } from "react-native";
-
 import PhoneInput from "react-native-phone-input";
-import Modal from "react-native-modal";
-import { Button } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-
-// Firebase authentication
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { authConfig, app } from "../backend/firebase.config";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+
+import Modal from "react-native-modal";
+
+import {
+  FontAwesome,
+  AntDesign,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 
 const dbRef = getFirestore(app);
 
@@ -34,59 +35,51 @@ export default function SignUpScreen({ navigation }) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [selectedGender, setSelectedGender] = useState("");
   const [password, setPassword] = useState("");
-  const [healthStatus, setHealthStatus] = useState("");
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
-    setIsModalVisible(!isModalVisible);
+    setModalVisible(!isModalVisible);
   };
 
-  const handleSubmit = async () => {
-    try {
-      // First, create the user with email and password
-      const userCredential = await createUserWithEmailAndPassword(
-        authConfig,
-        email,
-        password
-      );
-
-      // Then, get the user's UID
-      const userUid = userCredential.user.uid;
-
-      // Create a new document in Firestore with user data
-      const userData = {
-        fullName,
-        username,
-        birthDate,
-        phoneNumber,
-        selectedGender,
-        healthStatus,
-        uid: userUid, // Add the UID for linking with the authentication
-      };
-
-      // Add the user data to Firestore
-      const docRef = await addDoc(collection(dbRef, "users"), userData);
-
-      console.log("User registered with UID: ", docRef.id);
-
-      Alert.alert("Success", "Sign up successful");
-    } catch (error) {
-      console.error("Error: ", error.message);
-      Alert.alert("Failure", "Omo e no sign up o");
-    }
-  };
-
-  const handleDateChange = (event, selectedDate) => {
-    setShowDatePicker(false);
+  const handleDateChange = (selectedDate) => {
     if (selectedDate) {
       setBirthDate(selectedDate);
     }
+    setShowDatePicker(false);
+  };
+
+  const handleSubmit = () => {
+    createUserWithEmailAndPassword(authConfig, email, password)
+      .then(async (result) => {
+        const userData = {
+          fullName,
+          username,
+          email,
+          birthDate,
+          gender: selectedGender,
+          phoneNumber,
+        };
+
+        // Upload user data to Firestore
+        try {
+          const docRef = await addDoc(collection(dbRef, "users"), userData);
+          console.log("User data uploaded with ID: ", docRef.id);
+        } catch (error) {
+          console.error("Error uploading user data: ", error);
+        }
+
+        console.log("User created", result.user);
+        Alert.alert("Success", "Sign up successful");
+      })
+      .catch((err) => {
+        console.error("Error ", err.message);
+        Alert.alert("Failure", "Sign up failed");
+      });
   };
 
   return (
     <ScrollView>
       <View style={styles.container}>
-        {/* Title Name */}
         <View style={styles.Header}>
           <Text
             style={{
@@ -100,7 +93,6 @@ export default function SignUpScreen({ navigation }) {
             <Text style={styles.highlightedText}>Health</Text>
           </Text>
 
-          {/* paragraph */}
           <View style={{ paddingVertical: 10 }}>
             <Text style={{ color: "#708090" }}>
               Please enter your qualification details
@@ -108,9 +100,7 @@ export default function SignUpScreen({ navigation }) {
           </View>
         </View>
 
-        {/* Form */}
         <View style={styles.form}>
-          {/* Full Name input */}
           <View style={styles.inputContainer}>
             <TextInput
               onChangeText={(text) => setFullName(text)}
@@ -121,7 +111,6 @@ export default function SignUpScreen({ navigation }) {
             />
           </View>
 
-          {/* Username input */}
           <View style={styles.inputContainer}>
             <TextInput
               onChangeText={(text) => setUsername(text)}
@@ -132,7 +121,6 @@ export default function SignUpScreen({ navigation }) {
             />
           </View>
 
-          {/* Email input */}
           <View style={styles.inputContainer}>
             <TextInput
               onChangeText={(text) => setEmail(text)}
@@ -143,22 +131,18 @@ export default function SignUpScreen({ navigation }) {
             />
           </View>
 
-          {/* Birthday Date */}
-          <View>
-            <TouchableOpacity
-              style={styles.inputContainer}
-              onPress={() => setShowDatePicker(true)}
-            >
-              <TextInput
-                style={styles.input}
-                placeholder="Select Birth Date"
-                value={birthDate.toDateString()}
-                editable={false}
-              />
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity
+            style={styles.inputContainer}
+            onPress={() => setShowDatePicker(true)}
+          >
+            <TextInput
+              style={styles.input}
+              placeholder="Select Birth Date"
+              value={birthDate.toDateString()}
+              editable={false}
+            />
+          </TouchableOpacity>
 
-          {/* Gender */}
           {selectedGender ? (
             <View style={styles.inputContainer}>
               <Text style={{ fontSize: 16 }}>Gender: {selectedGender}</Text>
@@ -172,7 +156,6 @@ export default function SignUpScreen({ navigation }) {
             </TouchableOpacity>
           )}
 
-          {/* Phone Number input */}
           <View style={styles.inputContainer}>
             <PhoneInput
               ref={(ref) => {
@@ -188,18 +171,6 @@ export default function SignUpScreen({ navigation }) {
             />
           </View>
 
-          {/* Health Status input */}
-          <View style={styles.inputContainer}>
-            <TextInput
-              onChangeText={(text) => setHealthStatus(text)}
-              style={styles.input}
-              placeholder="Health Status"
-              keyboardType="default"
-              autoCapitalize="words"
-            />
-          </View>
-
-          {/* Password input */}
           <View style={styles.inputContainer}>
             <TextInput
               onChangeText={(text) => setPassword(text)}
@@ -211,7 +182,6 @@ export default function SignUpScreen({ navigation }) {
             />
           </View>
 
-          {/* Submit */}
           <View style={styles.Submit}>
             <TouchableOpacity
               onPress={handleSubmit}
@@ -229,7 +199,6 @@ export default function SignUpScreen({ navigation }) {
             </TouchableOpacity>
           </View>
 
-          {/* Forgot Password and Sign Up */}
           <View style={styles.rowContainer}>
             <Text> Already Have an account? </Text>
             <TouchableOpacity onPress={() => navigation.navigate("Login")}>
@@ -239,7 +208,6 @@ export default function SignUpScreen({ navigation }) {
             </TouchableOpacity>
           </View>
 
-          {/* OR text */}
           <View
             style={{
               justifyContent: "center",
@@ -250,9 +218,7 @@ export default function SignUpScreen({ navigation }) {
             <Text style={{ color: "#708090" }}> OR </Text>
           </View>
 
-          {/* Other Sign up options */}
           <View style={styles.iconContainer}>
-            {/* Facebook */}
             <TouchableOpacity
               onPress={() => console.log("Facebook login pressed")}
               style={styles.iconButton}
@@ -260,7 +226,6 @@ export default function SignUpScreen({ navigation }) {
               <FontAwesome name="facebook-square" size={30} color="#3b5998" />
             </TouchableOpacity>
 
-            {/* Gmail */}
             <TouchableOpacity
               onPress={() => console.log("Gmail login pressed")}
               style={styles.iconButton}
@@ -268,7 +233,6 @@ export default function SignUpScreen({ navigation }) {
               <AntDesign name="google" size={30} color="#DB4437" />
             </TouchableOpacity>
 
-            {/* Microsoft */}
             <TouchableOpacity
               onPress={() => console.log("Microsoft login pressed")}
               style={styles.iconButton}
@@ -284,7 +248,13 @@ export default function SignUpScreen({ navigation }) {
         <StatusBar style="auto" />
       </View>
 
-      {/* Gender Selection Modal */}
+      <DateTimePickerModal
+        isVisible={showDatePicker}
+        mode="date"
+        onConfirm={handleDateChange}
+        onCancel={() => setShowDatePicker(false)}
+      />
+
       <Modal isVisible={isModalVisible}>
         <View style={styles.modalContainer}>
           <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 20 }}>
