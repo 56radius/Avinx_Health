@@ -12,12 +12,13 @@ import {
 } from "react-native";
 import PhoneInput from "react-native-phone-input";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import { authConfig, app } from "../backend/firebase.config";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
-
 import Modal from "react-native-modal";
-
 import {
   FontAwesome,
   AntDesign,
@@ -34,6 +35,7 @@ export default function SignUpScreen({ navigation }) {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [selectedGender, setSelectedGender] = useState("");
+  const [healthStatus, setHealthStatus] = useState(""); // Added Health Status
   const [password, setPassword] = useState("");
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -58,18 +60,29 @@ export default function SignUpScreen({ navigation }) {
           birthDate,
           gender: selectedGender,
           phoneNumber,
+          healthStatus, // Added Health Status
         };
 
-        // Upload user data to Firestore
         try {
           const docRef = await addDoc(collection(dbRef, "users"), userData);
           console.log("User data uploaded with ID: ", docRef.id);
+
+          sendEmailVerification(result.user)
+            .then(() => {
+              console.log("Verification email sent.");
+              Alert.alert(
+                "Success",
+                "Sign up successful. Verification email sent."
+              );
+            })
+            .catch((error) => {
+              console.error("Error sending verification email: ", error);
+              Alert.alert("Error", "Error sending verification email.");
+            });
         } catch (error) {
           console.error("Error uploading user data: ", error);
+          Alert.alert("Error", "Sign up failed");
         }
-
-        console.log("User created", result.user);
-        Alert.alert("Success", "Sign up successful");
       })
       .catch((err) => {
         console.error("Error ", err.message);
@@ -179,6 +192,16 @@ export default function SignUpScreen({ navigation }) {
               placeholder="Password"
               keyboardType="email-address"
               autoCapitalize="none"
+            />
+          </View>
+
+          <View style={styles.inputContainer}>
+            <TextInput
+              onChangeText={(text) => setHealthStatus(text)} // Added Health Status
+              style={styles.input}
+              placeholder="Health Status" // Added Health Status
+              keyboardType="default" // Added Health Status
+              autoCapitalize="words" // Added Health Status
             />
           </View>
 
@@ -298,18 +321,15 @@ const styles = StyleSheet.create({
     color: "green",
     fontWeight: "bold",
   },
-
   highlightedText: {
     fontSize: 30,
     color: "blue",
     fontWeight: "bold",
   },
-
   form: {
     padding: 20,
     width: "110%",
   },
-
   inputContainer: {
     paddingVertical: 12,
     marginBottom: 15,
@@ -322,14 +342,12 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 16,
   },
-
   rowContainer: {
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
     paddingVertical: 5,
   },
-
   iconContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -337,13 +355,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 13,
   },
-
   iconButton: {
     borderRadius: 20,
     padding: 10,
     backgroundColor: "#f2f2f2",
   },
-
   modalContainer: {
     backgroundColor: "white",
     padding: 22,
@@ -352,13 +368,11 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderColor: "rgba(0, 0, 0, 0.1)",
   },
-
   genderOption: {
     paddingVertical: 10,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
   },
-
   Submit: {
     marginTop: 15,
   },
