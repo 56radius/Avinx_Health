@@ -20,7 +20,7 @@ import { getFirestore, collection, addDoc } from "firebase/firestore";
 import app from "../backend/firebase.config";
 
 const dbRef = getFirestore(app);
-export default function CreateComplainScreen({ navigation }) {
+export default function TasksScreen({ navigation }) {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");

@@ -22,7 +22,7 @@ import {
 } from "react-native";
 import DashboardHomeScreen from "../components/DashboardHomeScreen";
 import TrackerScreen from "./TrackerScreen";
-import CreateComplainScreen from "./CreateComplain";
+import TasksScreen from "./TasksScreen";
 import ToolsScreen from "../components/ToolsScreen";
 import ProfileScreen from "../components/ProfileScreen";
 
@@ -54,7 +54,7 @@ function Dashboard() {
 
       <Tab.Screen
         name="Plus"
-        component={CreateComplainScreen}
+        component={TasksScreen}
         options={{
           tabBarLabel: () => false,
           tabBarIcon: () => (
