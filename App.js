@@ -17,6 +17,7 @@ import MyProfileScreen from "././src/screens/MyProfileScreen";
 import EditProfileScreen from "./src/screens/EditProfileScreen";
 import FeedbackScreen from "./src/screens/FeedbackScreen";
 import SelfDiagnoserScreen from "./src/screens/SelfDiagnoserScreen";
+import FindTherapistScreen from "./src/screens/FindTherapistScreen";
 
 //Expo Vector Icons
 import {
@@ -119,6 +120,16 @@ export default function App() {
               component={FeedbackScreen}
               options={{
                 title: "Feedback",
+                headerTransparent: true,
+              }}
+            />
+
+            {/* Find Therapist Screen */}
+            <Stack.Screen
+              name="FindTherapist"
+              component={FindTherapistScreen}
+              options={{
+                title: "Find Therapist",
                 headerTransparent: true,
               }}
             />

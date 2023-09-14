@@ -11,6 +11,7 @@ import {
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
+import { Fontisto } from "@expo/vector-icons";
 
 //navigation
 import { useNavigation } from "@react-navigation/native";
@@ -29,7 +30,7 @@ export default function ToolsScreen() {
           <Text style={{ fontWeight: "bold", fontSize: 28 }}> Tools </Text>
         </View>
 
-        {/* Top Row of Cards */}
+        {/* First Row of Cards */}
         <View style={styles.cardRow}>
           {/* First Card */}
           <View
@@ -123,7 +124,7 @@ export default function ToolsScreen() {
           </View>
         </View>
 
-        {/* Bottom Row of Cards */}
+        {/* Second Row of Cards */}
         <View style={styles.cardRow}>
           {/* Third Card */}
           <View style={styles.card}>
@@ -175,6 +176,56 @@ export default function ToolsScreen() {
             {/* Add any other components or text for the card */}
           </View>
         </View>
+
+        {/* Third Row of Cards */}
+        <View style={styles.cardRow}>
+          {/* Fifth Card */}
+          <View
+            style={{
+              width: "48%",
+              height: 150,
+              backgroundColor: "blue",
+              borderRadius: 24,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <View
+              style={{
+                alignSelf: "flex-start",
+                paddingHorizontal: 16,
+                flex: 0.5,
+              }}
+            >
+              <TouchableOpacity
+                onPress={() => navigation.navigate("FindTherapist")}
+                style={{
+                  borderWidth: 2,
+                  paddingVertical: 9,
+                  paddingHorizontal: 10,
+                  borderRadius: 50,
+                  backgroundColor: "#fff",
+                  borderColor: "green",
+                }}
+              >
+                <Fontisto name="doctor" size={24} color="green" />
+              </TouchableOpacity>
+            </View>
+            {/* Add content for the second card */}
+            <Text
+              style={{
+                alignSelf: "flex-start",
+                fontWeight: "bold",
+                fontSize: 15,
+                paddingHorizontal: 16,
+                color: "#fff",
+              }}
+            >
+              Find Therapist
+            </Text>
+            {/* Add any other components or text for the card */}
+          </View>
+        </View>
       </View>
     </ScrollView>
   );
@@ -215,8 +266,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
-
-  //first row styling
-
-  //second row styling
 });
