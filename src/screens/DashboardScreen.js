@@ -56,6 +56,7 @@ function Dashboard() {
         name="Plus"
         component={TasksScreen}
         options={{
+          headerShown: false,
           tabBarLabel: () => false,
           tabBarIcon: () => (
             <AntDesign name="plussquare" size={50} color="green" />
