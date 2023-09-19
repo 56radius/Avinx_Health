@@ -56,10 +56,10 @@ export default function TasksScreen({ navigation }) {
         {/* Text and Checkbox */}
         <View style={styles.cardContent}>
           <Text style={styles.cardTitle}> check-in </Text>
-          <Text> Daily check-in </Text>
+          <Text style={{ marginTop: 5 }}> Daily check-in </Text>
           {/* time icon beneath it */}
           <View>
-            <Text>
+            <Text style={{ marginTop: 5 }}>
               <MaterialCommunityIcons
                 name="clock-time-nine-outline"
                 size={15}
