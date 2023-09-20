@@ -48,6 +48,38 @@ export default function TasksScreen({ navigation }) {
           </Text>
         </View>
 
+        {/* Tasks and session monitoring */}
+        <View style={{ alignSelf: "flex-start", flexDirection: "row" }}>
+          {/* first side left card */}
+          <View
+            style={{
+              marginTop: 20,
+              alignSelf: "flex-start",
+              marginLeft: 20,
+            }}
+          >
+            <Text style={{}}>
+              <Text style={{ fontWeight: "bold" }}> 1 0f 3 tasks </Text> {"\n"}
+              <Text style={{ margin: 20 }}> Daily Goals </Text>
+            </Text>
+          </View>
+
+          {/* first side right card */}
+          <View
+            style={{
+              marginTop: 20,
+              alignSelf: "flex-start",
+              marginLeft: 70,
+            }}
+          >
+            <Text style={{}}>
+              <Text style={{ fontWeight: "bold" }}> 0 of 3 sessions </Text>{" "}
+              {"\n"}
+              <Text style={{ margin: 20 }}> Weekly Goals </Text>
+            </Text>
+          </View>
+        </View>
+
         {/* Goal's text */}
         <View
           style={{
@@ -97,8 +129,8 @@ export default function TasksScreen({ navigation }) {
           <View style={[styles.routineCard, cardShadowStyle]}>
             {/* icon */}
             <View style={styles.Icon}>
-              <Ionicons
-                name="ios-shield-checkmark-outline"
+              <MaterialCommunityIcons
+                name="meditation"
                 size={24}
                 color="black"
               />
@@ -106,8 +138,8 @@ export default function TasksScreen({ navigation }) {
 
             {/* Text and Checkbox */}
             <View style={styles.cardContent}>
-              <Text style={styles.cardTitle}> check-in </Text>
-              <Text style={{ marginTop: 5 }}> Daily check-in </Text>
+              <Text style={styles.cardTitle}> Today's Session </Text>
+              <Text style={{ marginTop: 5 }}> Level 1 </Text>
               {/* time icon beneath it */}
               <View>
                 <Text style={{ marginTop: 5 }}>
@@ -116,7 +148,7 @@ export default function TasksScreen({ navigation }) {
                     size={15}
                     color="black"
                   />
-                  <Text> 1 minute </Text>
+                  <Text> 23 minutes </Text>
                 </Text>
               </View>
             </View>
@@ -129,17 +161,13 @@ export default function TasksScreen({ navigation }) {
           <View style={[styles.routineCard, cardShadowStyle]}>
             {/* icon */}
             <View style={styles.Icon}>
-              <Ionicons
-                name="ios-shield-checkmark-outline"
-                size={24}
-                color="black"
-              />
+              <Entypo name="awareness-ribbon" size={23} color="black" />
             </View>
 
             {/* Text and Checkbox */}
             <View style={styles.cardContent}>
-              <Text style={styles.cardTitle}> check-in </Text>
-              <Text style={{ marginTop: 5 }}> Daily check-in </Text>
+              <Text style={styles.cardTitle}> Awareness </Text>
+              <Text style={{ marginTop: 5 }}> About Mental Health </Text>
               {/* time icon beneath it */}
               <View>
                 <Text style={{ marginTop: 5 }}>
@@ -148,7 +176,7 @@ export default function TasksScreen({ navigation }) {
                     size={15}
                     color="black"
                   />
-                  <Text> 1 minute </Text>
+                  <Text> 10 minutes </Text>
                 </Text>
               </View>
             </View>
