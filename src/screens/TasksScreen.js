@@ -6,76 +6,161 @@ import {
   Button,
   StyleSheet,
   TouchableOpacity,
+  ScrollView,
+  Platform,
 } from "react-native";
 
-// Vector iCons
 import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
-//firebase authentication
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import app from "../backend/firebase.config";
 
 const dbRef = getFirestore(app);
+
 export default function TasksScreen({ navigation }) {
+  const cardShadowStyle = Platform.select({
+    ios: {
+      shadowColor: "rgba(0,0,0,0.5)",
+      shadowOpacity: 0.8,
+      shadowRadius: 2,
+      shadowOffset: {
+        height: 1,
+        width: 0,
+      },
+    },
+    android: {
+      elevation: 5,
+    },
+  });
+
   return (
-    <View style={styles.container}>
-      {/* Header Title/ Date title */}
-      <View style={styles.headerTitle}>
-        <Text style={styles.StyleText}>
-          <Text style={styles.normalText}>Tuesday,</Text> {"\n"}
-          <Text style={styles.highlightedText}>September 19</Text>
-        </Text>
-      </View>
-
-      {/* Goal's text */}
-      <View
-        style={{
-          alignSelf: "flex-start",
-          paddingHorizontal: 20,
-          marginTop: 20,
-        }}
-      >
-        <Text> Today's goals </Text>
-      </View>
-
-      {/* Goal/Task Card */}
-      <View style={styles.routineCard}>
-        {/* icon */}
-        <View style={styles.Icon}>
-          <Ionicons
-            name="ios-shield-checkmark-outline"
-            size={24}
-            color="black"
-          />
+    <ScrollView>
+      <View style={styles.container}>
+        {/* Header Title/ Date title */}
+        <View style={styles.headerTitle}>
+          <Text style={styles.StyleText}>
+            <Text style={styles.normalText}>Tuesday,</Text> {"\n"}
+            <Text style={styles.highlightedText}>September 19</Text>
+          </Text>
         </View>
 
-        {/* Text and Checkbox */}
-        <View style={styles.cardContent}>
-          <Text style={styles.cardTitle}> check-in </Text>
-          <Text style={{ marginTop: 5 }}> Daily check-in </Text>
-          {/* time icon beneath it */}
-          <View>
-            <Text style={{ marginTop: 5 }}>
-              <MaterialCommunityIcons
-                name="clock-time-nine-outline"
-                size={15}
+        {/* Goal's text */}
+        <View
+          style={{
+            alignSelf: "flex-start",
+            paddingHorizontal: 20,
+            marginTop: 20,
+          }}
+        >
+          <Text> Today's goals </Text>
+        </View>
+
+        {/* Goal/Task Card */}
+        <View>
+          {/* First card */}
+          <View style={[styles.routineCard, cardShadowStyle]}>
+            {/* icon */}
+            <View style={styles.Icon}>
+              <Ionicons
+                name="ios-shield-checkmark-outline"
+                size={24}
                 color="black"
               />
-              1 minute
-            </Text>
+            </View>
+
+            {/* Text and Checkbox */}
+            <View style={styles.cardContent}>
+              <Text style={styles.cardTitle}> check-in </Text>
+              <Text style={{ marginTop: 5 }}> Daily check-in </Text>
+              {/* time icon beneath it */}
+              <View>
+                <Text style={{ marginTop: 5 }}>
+                  <MaterialCommunityIcons
+                    name="clock-time-nine-outline"
+                    size={15}
+                    color="black"
+                  />
+                  <Text> 1 minute </Text>
+                </Text>
+              </View>
+            </View>
+
+            {/* Checkbox */}
+            <View style={styles.checkbox}></View>
+          </View>
+
+          {/* Second card */}
+          <View style={[styles.routineCard, cardShadowStyle]}>
+            {/* icon */}
+            <View style={styles.Icon}>
+              <Ionicons
+                name="ios-shield-checkmark-outline"
+                size={24}
+                color="black"
+              />
+            </View>
+
+            {/* Text and Checkbox */}
+            <View style={styles.cardContent}>
+              <Text style={styles.cardTitle}> check-in </Text>
+              <Text style={{ marginTop: 5 }}> Daily check-in </Text>
+              {/* time icon beneath it */}
+              <View>
+                <Text style={{ marginTop: 5 }}>
+                  <MaterialCommunityIcons
+                    name="clock-time-nine-outline"
+                    size={15}
+                    color="black"
+                  />
+                  <Text> 1 minute </Text>
+                </Text>
+              </View>
+            </View>
+
+            {/* Checkbox */}
+            <View style={styles.checkbox}></View>
+          </View>
+
+          {/* Third card */}
+          <View style={[styles.routineCard, cardShadowStyle]}>
+            {/* icon */}
+            <View style={styles.Icon}>
+              <Ionicons
+                name="ios-shield-checkmark-outline"
+                size={24}
+                color="black"
+              />
+            </View>
+
+            {/* Text and Checkbox */}
+            <View style={styles.cardContent}>
+              <Text style={styles.cardTitle}> check-in </Text>
+              <Text style={{ marginTop: 5 }}> Daily check-in </Text>
+              {/* time icon beneath it */}
+              <View>
+                <Text style={{ marginTop: 5 }}>
+                  <MaterialCommunityIcons
+                    name="clock-time-nine-outline"
+                    size={15}
+                    color="black"
+                  />
+                  <Text> 1 minute </Text>
+                </Text>
+              </View>
+            </View>
+
+            {/* Checkbox */}
+            <View style={styles.checkbox}></View>
           </View>
         </View>
 
-        {/* Checkbox */}
-        <View style={styles.checkbox}></View>
+        {/* Add more routine cards here */}
       </View>
-
-      {/* Add more routine cards here */}
-    </View>
+    </ScrollView>
   );
 }
 
@@ -84,6 +169,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    paddingTop: 100,
   },
   headerTitle: {
     alignSelf: "flex-start",
@@ -108,14 +194,14 @@ const styles = StyleSheet.create({
     height: 100,
     marginTop: 8,
     borderRadius: 12,
-    backgroundColor: "#E0E0E0",
-    borderColor: "#E0E0E0",
+    backgroundColor: "#fff",
+    borderColor: "#fff",
     padding: 20,
   },
   cardContent: {
     flex: 1,
     paddingHorizontal: 10,
-    margin: 10, // Adjust as needed
+    margin: 10,
   },
   cardTitle: {
     fontWeight: "bold",
@@ -127,5 +213,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "black",
     // Add styles for checked and unchecked states as needed
+  },
+
+  Icon: {
+    borderRadius: 50,
+    paddingHorizontal: 6,
+    paddingVertical: 6,
+    backgroundColor: "#D3D3D3",
   },
 });
