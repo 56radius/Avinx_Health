@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -22,6 +22,22 @@ import app from "../backend/firebase.config";
 const dbRef = getFirestore(app);
 
 export default function TasksScreen({ navigation }) {
+  // State to store today's date
+  const [currentDate, setCurrentDate] = useState("");
+
+  // Function to format the date as "Friday, September 22"
+  const formatDate = (date) => {
+    const options = { weekday: "long", month: "long", day: "numeric" };
+    return date.toLocaleDateString(undefined, options);
+  };
+
+  // Update currentDate when the component mounts
+  useEffect(() => {
+    const today = new Date();
+    const formattedDate = formatDate(today);
+    setCurrentDate(formattedDate);
+  }, []);
+
   const cardShadowStyle = Platform.select({
     ios: {
       shadowColor: "rgba(0,0,0,0.5)",
@@ -43,11 +59,9 @@ export default function TasksScreen({ navigation }) {
         {/* Header Title/ Date title */}
         <View style={styles.headerTitle}>
           <Text style={styles.StyleText}>
-            <Text style={styles.normalText}>Tuesday,</Text> {"\n"}
-            <Text style={styles.highlightedText}>September 19</Text>
+            <Text style={styles.normalText}>{currentDate}</Text> {"\n"}
           </Text>
         </View>
-
         {/* Tasks and session monitoring */}
         <View style={{ alignSelf: "flex-start", flexDirection: "row" }}>
           {/* first side left card */}
@@ -186,7 +200,7 @@ export default function TasksScreen({ navigation }) {
           </View>
         </View>
 
-        {/* Add more routine cards here */}
+        {/* Mood Check in text */}
       </View>
     </ScrollView>
   );
@@ -197,7 +211,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 100,
+    paddingTop: 70,
   },
   headerTitle: {
     alignSelf: "flex-start",
@@ -211,7 +225,7 @@ const styles = StyleSheet.create({
   },
   StyleText: {
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 25,
   },
   routineCard: {
     flexDirection: "row",
