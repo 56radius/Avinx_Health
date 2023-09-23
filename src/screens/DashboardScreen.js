@@ -1,25 +1,7 @@
 import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {
-  AntDesign,
-  Zocial,
-  Ionicons,
-  Feather,
-  FontAwesome5,
-  Fontisto,
-  MaterialCommunityIcons,
-  Foundation,
-} from "@expo/vector-icons";
-import {
-  Image,
-  Settings,
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Platform,
-} from "react-native";
+import { AntDesign, FontAwesome5, Ionicons } from "@expo/vector-icons";
+import { View, StyleSheet } from "react-native";
 import DashboardHomeScreen from "../components/DashboardHomeScreen";
 import TrackerScreen from "./TrackerScreen";
 import TasksScreen from "./TasksScreen";
@@ -30,14 +12,20 @@ const Tab = createBottomTabNavigator();
 
 function Dashboard() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      tabBarOptions={{
+        style: styles.tabBarContainer,
+        activeTintColor: "green", // Color for the active tab
+        inactiveTintColor: "black", // Color for inactive tabs
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={DashboardHomeScreen}
         options={{
           headerShown: false,
-          tabBarIcon: () => (
-            <Ionicons name="ios-home-outline" size={24} color="green" />
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="ios-home-outline" size={size} color={color} />
           ),
         }}
       />
@@ -46,8 +34,8 @@ function Dashboard() {
         component={TrackerScreen}
         options={{
           headerShown: false,
-          tabBarIcon: () => (
-            <FontAwesome5 name="sitemap" size={24} color="black" />
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name="sitemap" size={size} color={color} />
           ),
         }}
       />
@@ -58,12 +46,9 @@ function Dashboard() {
         options={{
           headerShown: false,
           tabBarLabel: () => false,
-          tabBarIcon: () => (
-            <AntDesign name="plussquare" size={50} color="green" />
+          tabBarIcon: ({ color, size }) => (
+            <AntDesign name="plussquare" size={size + 20} color={color} />
           ),
-          tabBarIconStyle: {
-            marginTop: -40,
-          },
         }}
       />
 
@@ -72,7 +57,9 @@ function Dashboard() {
         component={ToolsScreen}
         options={{
           headerShown: false,
-          tabBarIcon: () => <AntDesign name="inbox" size={24} color="black" />,
+          tabBarIcon: ({ color, size }) => (
+            <AntDesign name="inbox" size={size} color={color} />
+          ),
         }}
       />
       <Tab.Screen
@@ -80,7 +67,9 @@ function Dashboard() {
         component={ProfileScreen}
         options={{
           headerShown: false,
-          tabBarIcon: () => <AntDesign name="user" size={24} color="black" />,
+          tabBarIcon: ({ color, size }) => (
+            <AntDesign name="user" size={size} color={color} />
+          ),
         }}
       />
     </Tab.Navigator>
@@ -89,4 +78,11 @@ function Dashboard() {
 
 export default Dashboard;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  tabBarContainer: {
+    backgroundColor: "white",
+    borderTopWidth: 2,
+    borderTopColor: "transparent",
+    height: 80,
+  },
+});
