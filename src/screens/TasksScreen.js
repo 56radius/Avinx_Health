@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
-  Image,
   Button,
   StyleSheet,
-  TouchableOpacity,
   ScrollView,
   Platform,
+  TouchableOpacity,
 } from "react-native";
 
 import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
@@ -53,6 +53,11 @@ export default function TasksScreen({ navigation }) {
     },
   });
 
+  const handleMoodSelection = (mood) => {
+    // Handle the selected mood (you can implement this logic)
+    console.log("Selected mood:", mood);
+  };
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -73,7 +78,7 @@ export default function TasksScreen({ navigation }) {
             }}
           >
             <Text style={{}}>
-              <Text style={{ fontWeight: "bold" }}> 1 0f 3 tasks </Text> {"\n"}
+              <Text style={{ fontWeight: "bold" }}> 1 of 3 tasks </Text> {"\n"}
               <Text style={{ margin: 20 }}> Daily Goals </Text>
             </Text>
           </View>
@@ -201,6 +206,48 @@ export default function TasksScreen({ navigation }) {
         </View>
 
         {/* Mood Check in text */}
+        <View style={styles.MoodHeader}>
+          <Text style={styles.StyleText}>
+            <Text> How are You </Text> {"\n"}
+            <Text> Feeling Today? </Text>
+          </Text>
+        </View>
+
+        {/* Mood Check in */}
+        <View style={{ flexDirection: "row", width: "100%", padding: 10 }}>
+          <TouchableOpacity
+            style={styles.moodCard}
+            onPress={() => handleMoodSelection("Happy")}
+          >
+            <Text style={styles.moodText}>Happy</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.moodCard}
+            onPress={() => handleMoodSelection("Sad")}
+          >
+            <Text style={styles.moodText}>Sad</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.moodCard}
+            onPress={() => handleMoodSelection("Excited")}
+          >
+            <Text style={styles.moodText}>Excited</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{ flexDirection: "row", width: "100%", padding: 10 }}>
+          <TouchableOpacity
+            style={styles.moodCard}
+            onPress={() => handleMoodSelection("Calm")}
+          >
+            <Text style={styles.moodText}>Calm</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.moodCard}
+            onPress={() => handleMoodSelection("Angry")}
+          >
+            <Text style={styles.moodText}>Angry</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   );
@@ -262,5 +309,28 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     paddingVertical: 6,
     backgroundColor: "#D3D3D3",
+  },
+
+  // Mood header
+  MoodHeader: {
+    alignSelf: "flex-start",
+    paddingHorizontal: 20,
+    marginTop: 45,
+  },
+
+  moodCard: {
+    width: 110, // Adjust the width as needed
+    height: 150, // Adjust the height as needed
+    marginHorizontal: 10, // Adjust the horizontal margin as needed
+    borderRadius: 12,
+    backgroundColor: "blue", // Change the background color as needed
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 10, // Adjust the vertical margin as needed
+  },
+  moodText: {
+    fontWeight: "bold",
+    fontSize: 15,
+    color: "#fff",
   },
 });
